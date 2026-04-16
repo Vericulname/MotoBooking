@@ -9,47 +9,47 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repository
 {
-    public class TbNhanvienRepos
+    public class OrdersRepos
     {
-        public List<TbNhanvien> GetAll()
+        public List<TbDonDatXe> GetAll()
         {
             using (var context = new MotoBookingContext())
             {
-                return context.TbNhanviens.ToList();
+                return context.TbDonDatXes.ToList();
             }
         }
-        public TbNhanvien GetById(int id)
+        public TbDonDatXe GetById(int id)
         {
             using (var context = new MotoBookingContext())
             {
-                return context.TbNhanviens.Find(id);
+                return context.TbDonDatXes.Find(id);
             }
         }
-        public TbNhanvien Add(TbNhanvien nhanvien)
+        public TbDonDatXe Add(TbDonDatXe donDatXe)
         {
             using (var context = new MotoBookingContext())
             {
-                context.TbNhanviens.Add(nhanvien);
+                context.TbDonDatXes.Add(donDatXe);
                 context.SaveChanges();
-                return nhanvien;
+                return donDatXe;
             }
         }
-        public TbNhanvien Update(TbNhanvien nhanvien)
+        public TbDonDatXe Update(TbDonDatXe donDatXe)
         {
             using (var context = new MotoBookingContext())
             {
-                context.TbNhanviens.Update(nhanvien);
+                context.TbDonDatXes.Update(donDatXe);
                 context.SaveChanges();
-                return nhanvien;
+                return donDatXe;
             }
         }
         public void Delete(int id)
         {
             using (var context = new MotoBookingContext())
             {
-                var nhanvien = context.TbNhanviens.Find(id);
+                var donDatXe = context.TbDonDatXes.Find(id);
                 
-                    context.TbNhanviens.Remove(nhanvien);
+                    context.TbDonDatXes.Remove(donDatXe);
                 context.SaveChanges();
                 
             }

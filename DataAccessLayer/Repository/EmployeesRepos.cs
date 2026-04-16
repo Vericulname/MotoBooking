@@ -9,47 +9,47 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repository
 {
-    public class TbKhachHangRepos
+    public class EmployeesRepos
     {
-        public List<TbKhachhang> GetAll()
+        public List<TbNhanvien> GetAll()
         {
             using (var context = new MotoBookingContext())
             {
-                return context.TbKhachhangs.ToList();
+                return context.TbNhanviens.ToList();
             }
         }
-        public TbKhachhang GetById(int id)
+        public TbNhanvien GetById(int id)
         {
             using (var context = new MotoBookingContext())
             {
-                return context.TbKhachhangs.Find(id);
+                return context.TbNhanviens.Find(id);
             }
         }
-        public TbKhachhang Add(TbKhachhang khachhang)
+        public TbNhanvien Add(TbNhanvien nhanvien)
         {
             using (var context = new MotoBookingContext())
             {
-                context.TbKhachhangs.Add(khachhang);
+                context.TbNhanviens.Add(nhanvien);
                 context.SaveChanges();
-                return khachhang;
+                return nhanvien;
             }
         }
-        public TbKhachhang Update(TbKhachhang khachhang)
+        public TbNhanvien Update(TbNhanvien nhanvien)
         {
             using (var context = new MotoBookingContext())
             {
-                context.TbKhachhangs.Update(khachhang);
+                context.TbNhanviens.Update(nhanvien);
                 context.SaveChanges();
-                return khachhang;
+                return nhanvien;
             }
         }
         public void Delete(int id)
         {
             using (var context = new MotoBookingContext())
             {
-                var khachhang = context.TbKhachhangs.Find(id);
+                var nhanvien = context.TbNhanviens.Find(id);
                 
-                    context.TbKhachhangs.Remove(khachhang);
+                context.TbNhanviens.Remove(nhanvien);
                 context.SaveChanges();
                 
             }

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BussinessLayer.request
+namespace BussinessLayer.Models
 {
-    public class KhachHangRequest
+    public partial class CustomerModel
     {
-
+        public int PkIKhachhang { get; set; }
 
         public string SHoTen { get; set; } = null!;
 
@@ -20,6 +20,6 @@ namespace BussinessLayer.request
 
         public string? SDiaChi { get; set; }
 
-
+        public DateTime? DNgayTao { get; set; }
     }
 }

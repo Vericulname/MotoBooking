@@ -6,20 +6,15 @@ using System.Threading.Tasks;
 
 namespace BussinessLayer.Models
 {
-    public partial class TbKhachHangModel
+    public partial class EmployeesModel
     {
-        public int PkIKhachhang { get; set; }
+        public int PkINhanvien { get; set; }
 
         public string SHoTen { get; set; } = null!;
 
         public string SSoDienThoai { get; set; } = null!;
-
-        public string? SCccd { get; set; }
-
-        public string? SEmail { get; set; }
-
-        public string? SDiaChi { get; set; }
-
         public DateTime? DNgayTao { get; set; }
+        public string? SVaiTro { get; set; }
+        public string SMatKhau { get; set; } = null!;
     }
 }

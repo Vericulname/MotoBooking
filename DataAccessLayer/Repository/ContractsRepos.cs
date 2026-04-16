@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repository
 {
-    public class TbHopDongRepos
+    public class ContractsRepos
     {
         public List<TbHopDong> GetAll()
         {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repository
 {
-    public class TbXeRepos
+    public class VehiclesRepos
     {
         public List<TbXe> GetAll()
         {
@@ -25,7 +25,7 @@ namespace DataAccessLayer.Repository
                 return context.TbXes.Find(id);
             }
         }
-        public TbXe Add(TbXe xe)
+        public TbXe Create(TbXe xe)
         {
             using (var context = new MotoBookingContext())
             {

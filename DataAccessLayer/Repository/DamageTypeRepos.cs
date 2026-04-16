@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repository
 {
-    public class TbLoaihuHongRepos
+    public class DamageTypeRepos
     {
         public List<TbLoaiHuHong> GetAll()
         {

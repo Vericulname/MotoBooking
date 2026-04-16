@@ -9,47 +9,54 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repository
 {
-    public class TbDonDatXeRepos
+    public class CustomersRepos
     {
-        public List<TbDonDatXe> GetAll()
+        public List<TbKhachhang> GetAll()
         {
             using (var context = new MotoBookingContext())
             {
-                return context.TbDonDatXes.ToList();
+                return context.TbKhachhangs.ToList();
             }
         }
-        public TbDonDatXe GetById(int id)
+        public TbKhachhang GetById(int id)
         {
             using (var context = new MotoBookingContext())
             {
-                return context.TbDonDatXes.Find(id);
+                return context.TbKhachhangs.Find(id);
             }
         }
-        public TbDonDatXe Add(TbDonDatXe donDatXe)
+        public TbKhachhang GetByName(String name)
         {
             using (var context = new MotoBookingContext())
             {
-                context.TbDonDatXes.Add(donDatXe);
+                return context.TbKhachhangs.FirstOrDefault(k => k.SHoTen == name);
+            }
+        }
+        public TbKhachhang Add(TbKhachhang khachhang)
+        {
+            using (var context = new MotoBookingContext())
+            {
+                context.TbKhachhangs.Add(khachhang);
                 context.SaveChanges();
-                return donDatXe;
+                return khachhang;
             }
         }
-        public TbDonDatXe Update(TbDonDatXe donDatXe)
+        public TbKhachhang Update(TbKhachhang khachhang)
         {
             using (var context = new MotoBookingContext())
             {
-                context.TbDonDatXes.Update(donDatXe);
+                context.TbKhachhangs.Update(khachhang);
                 context.SaveChanges();
-                return donDatXe;
+                return khachhang;
             }
         }
         public void Delete(int id)
         {
             using (var context = new MotoBookingContext())
             {
-                var donDatXe = context.TbDonDatXes.Find(id);
+                var khachhang = context.TbKhachhangs.Find(id);
                 
-                    context.TbDonDatXes.Remove(donDatXe);
+                    context.TbKhachhangs.Remove(khachhang);
                 context.SaveChanges();
                 
             }

@@ -8,31 +8,47 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class KhachHangController : ControllerBase
+    public class CustomerController : ControllerBase
     {
-        private readonly TbKhachHangService _service;
+        private readonly CustomerService _service;
 
-        public KhachHangController()
+        public CustomerController()
         {
-            _service = new TbKhachHangService();
+            _service = new CustomerService();
         }
 
         [HttpGet]
-        [Route("GetAllKhachHang")]
-        public IActionResult GetAllKhachHang()
+        [Route("GetAllCustomer")]
+        public IActionResult GetAllCustomer()
         {
-            List<TbKhachHangModel> result = _service.GetAll();
+            List<CustomerModel> result = _service.GetAll();
 
             return Ok(result);
 
         }
         [HttpGet]
-        [Route("GetKhachHangById")]
-        public ActionResult GetKhachHangById(int id)
+        [Route("GetCustomerById")]
+        public ActionResult GetCustomerById(int id)
         {
             try
             {
-                TbKhachHangModel result = _service.GetById(id);
+                CustomerModel result = _service.GetById(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+
+
+        }
+        [HttpGet]
+        [Route("GetCustomerByName")]
+        public ActionResult GetCustomerByName(string name)
+        {
+            try
+            {
+                CustomerModel result = _service.GetByName(name);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -44,15 +60,15 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        [Route("CreateKhachHang")]
-        public ActionResult CreateKhachHang(KhachHangRequest request)
+        [Route("CreateCustomer")]
+        public ActionResult CreateCustomer(CustomerRequest request)
         {
         
             return Ok(_service.Create(request));
         }
         [HttpPut]
-        [Route("UpdateKhachHang")]
-        public ActionResult UpdateKhachHang([FromHeader] int id, [FromBody] KhachHangRequest request)
+        [Route("UpdateCustomer")]
+        public ActionResult UpdateCustomer([FromHeader] int id, [FromBody] CustomerRequest request)
         {
             try
             {
@@ -65,8 +81,8 @@ namespace WebAPI.Controllers
 
         }
         [HttpDelete]
-        [Route("DeleteKhachHang")]
-        public ActionResult DeleteKhachHang(int id)
+        [Route("DeleteCustomer")]
+        public ActionResult DeleteCustomer(int id)
         {
             try
             {
