@@ -18,7 +18,7 @@ namespace DataAccessLayer.Repository
                 return context.TbDonDatXes.ToList();
             }
         }
-        public TblDonDatXe GetById(int id)
+        public TblDonDatXe GetById(int? id)
         {
             using (var context = new MotoBookingContext())
             {
@@ -29,9 +29,9 @@ namespace DataAccessLayer.Repository
         {
             using (var context = new MotoBookingContext())
             {
-                context.Attach(donDatXe.FkIXeNavigation);
-                context.Attach(donDatXe.FkIKhachhangNavigation);
-               
+                //context.Attach(donDatXe.FkIXeNavigation);
+                //context.Attach(donDatXe.FkIKhachhangNavigation);
+
                 context.TbDonDatXes.Add(donDatXe);
                 context.SaveChanges();
                 return donDatXe;
@@ -41,6 +41,9 @@ namespace DataAccessLayer.Repository
         {
             using (var context = new MotoBookingContext())
             {
+                //context.Attach(donDatXe.FkIXeNavigation);
+                //context.Attach(donDatXe.FkIKhachhangNavigation);
+
                 context.TbDonDatXes.Update(donDatXe);
                 context.SaveChanges();
                 return donDatXe;

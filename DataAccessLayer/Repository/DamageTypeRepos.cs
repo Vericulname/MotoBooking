@@ -18,7 +18,7 @@ namespace DataAccessLayer.Repository
                 return context.TbLoaiHuHongs.ToList();
             }
         }
-        public TblLoaiHuHong GetById(int id)
+        public TblLoaiHuHong GetById(int? id)
         {
             using (var context = new MotoBookingContext())
             {

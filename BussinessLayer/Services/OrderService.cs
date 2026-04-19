@@ -66,8 +66,8 @@ namespace BussinessLayer.Services
         //đặt khoá ngoại
         private TblDonDatXe setFkNav(TblDonDatXe data, OrdersRequest request)
         {
-            var customer = _CustomersRepos.GetById((int)request.FkIKhachhang);
-            var vehicle = _VehiclesRepos.GetById((int)request.FkIXe);
+            var customer = _CustomersRepos.GetById((int) request.FkIKhachhang);
+            var vehicle = _VehiclesRepos.GetById((int) request.FkIXe);
 
             if (customer == null)
             {
@@ -80,8 +80,8 @@ namespace BussinessLayer.Services
 
             _requestmapper.Map<OrdersRequest, TblDonDatXe>(request, data);
 
-            data.FkIKhachhangNavigation = customer;
-            data.FkIXeNavigation = vehicle;
+            data.FkIXe = request.FkIXe;
+            data.FkIKhachhang = request.FkIKhachhang;
             return data;
         }
         public OrdersModel Update(int id,OrdersRequest request)

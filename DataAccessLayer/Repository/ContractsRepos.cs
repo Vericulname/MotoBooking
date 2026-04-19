@@ -25,22 +25,36 @@ namespace DataAccessLayer.Repository
                 return context.TbHopDongs.Find(id);
             }
         }
-        public TblHopDong Add(TblHopDong khachhang)
+        public TblHopDong Add(TblHopDong hopDong)
         {
             using (var context = new MotoBookingContext())
             {
-                context.TbHopDongs.Add(khachhang);
+                //context.Attach(hopDong.FkIDonDatNavigation);
+                //context.Attach(hopDong.FkILoaiHuHongNavigation);
+
+                //context.Attach(hopDong.FkIKhachhangNavigation);
+                //context.Attach(hopDong.FkINhanvienNavigation);
+                //context.Attach(hopDong.FkIXeNavigation);
+
+                context.TbHopDongs.Add(hopDong);
                 context.SaveChanges();
-                return khachhang;
+                return hopDong;
             }
         }
-        public TblHopDong Update(TblHopDong khachhang)
+        public TblHopDong Update(TblHopDong hopDong)
         {
             using (var context = new MotoBookingContext())
             {
-                context.TbHopDongs.Update(khachhang);
+                //context.Attach(hopDong.FkIKhachhangNavigation);
+                //context.Attach(hopDong.FkIDonDatNavigation);
+                //context.Attach(hopDong.FkILoaiHuHongNavigation);
+                //context.Attach(hopDong.FkINhanvienNavigation);
+                //context.Attach(hopDong.FkIXeNavigation);
+                
+
+                context.TbHopDongs.Update(hopDong);
                 context.SaveChanges();
-                return khachhang;
+                return hopDong;
             }
         }
         public void Delete(int id)
