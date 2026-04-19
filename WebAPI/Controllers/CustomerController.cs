@@ -10,11 +10,11 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private readonly CustomerService _service;
+        private readonly CustomersService _service;
 
         public CustomerController()
         {
-            _service = new CustomerService();
+            _service = new CustomersService();
         }
 
         [HttpGet]
@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
 
         }
         [HttpGet]
-        [Route("GetCustomerById")]
+        [Route("GetCustomerById/{id}")]
         public ActionResult GetCustomerById(int id)
         {
             try
@@ -43,7 +43,7 @@ namespace WebAPI.Controllers
 
         }
         [HttpGet]
-        [Route("GetCustomerByName")]
+        [Route("GetCustomerByName{name}")]
         public ActionResult GetCustomerByName(string name)
         {
             try
@@ -67,7 +67,7 @@ namespace WebAPI.Controllers
             return Ok(_service.Create(request));
         }
         [HttpPut]
-        [Route("UpdateCustomer")]
+        [Route("UpdateCustomer/{id}")]
         public ActionResult UpdateCustomer([FromHeader] int id, [FromBody] CustomerRequest request)
         {
             try
@@ -81,7 +81,7 @@ namespace WebAPI.Controllers
 
         }
         [HttpDelete]
-        [Route("DeleteCustomer")]
+        [Route("DeleteCustomer/{id}")]
         public ActionResult DeleteCustomer(int id)
         {
             try

@@ -11,30 +11,33 @@ namespace DataAccessLayer.Repository
 {
     public class OrdersRepos
     {
-        public List<TbDonDatXe> GetAll()
+        public List<TblDonDatXe> GetAll()
         {
             using (var context = new MotoBookingContext())
             {
                 return context.TbDonDatXes.ToList();
             }
         }
-        public TbDonDatXe GetById(int id)
+        public TblDonDatXe GetById(int id)
         {
             using (var context = new MotoBookingContext())
             {
                 return context.TbDonDatXes.Find(id);
             }
         }
-        public TbDonDatXe Add(TbDonDatXe donDatXe)
+        public TblDonDatXe Add(TblDonDatXe donDatXe)
         {
             using (var context = new MotoBookingContext())
             {
+                context.Attach(donDatXe.FkIXeNavigation);
+                context.Attach(donDatXe.FkIKhachhangNavigation);
+               
                 context.TbDonDatXes.Add(donDatXe);
                 context.SaveChanges();
                 return donDatXe;
             }
         }
-        public TbDonDatXe Update(TbDonDatXe donDatXe)
+        public TblDonDatXe Update(TblDonDatXe donDatXe)
         {
             using (var context = new MotoBookingContext())
             {

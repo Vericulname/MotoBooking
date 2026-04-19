@@ -18,13 +18,13 @@ namespace BussinessLayer.Services
         {
             _Repos = new EmployeesRepos();
        
-            _modelmapper = ModelMapper<TbNhanvien, EmployeesModel>.createMap();
-            _requestmapper = ModelMapper<TbNhanvien, EmployeesRequest>.createMap();
+            _modelmapper = ModelMapper<TblNhanvien, EmployeesModel>.createMap();
+            _requestmapper = ModelMapper<TblNhanvien, EmployeesRequest>.createMap();
         }
         public List<EmployeesModel> GetAll()
         {
-            List<TbNhanvien> data = _Repos.GetAll();
-            List<EmployeesModel> lst = _modelmapper.Map<List<TbNhanvien>, List<EmployeesModel>>(data);
+            List<TblNhanvien> data = _Repos.GetAll();
+            List<EmployeesModel> lst = _modelmapper.Map<List<TblNhanvien>, List<EmployeesModel>>(data);
             return lst;
         }
         public EmployeesModel GetById(int id)
@@ -34,16 +34,16 @@ namespace BussinessLayer.Services
             {
                 throw new Exception("Không tìm thấy nhân viên với id: " + id);
             }
-            EmployeesModel model = _modelmapper.Map<TbNhanvien, EmployeesModel>(data);
+            EmployeesModel model = _modelmapper.Map<TblNhanvien, EmployeesModel>(data);
             return model;
             
         }
        
         public EmployeesModel Create(EmployeesRequest request)
         {
-            TbNhanvien data = _requestmapper.Map<EmployeesRequest, TbNhanvien>(request);
+            TblNhanvien data = _requestmapper.Map<EmployeesRequest, TblNhanvien>(request);
             
-            return _modelmapper.Map<TbNhanvien, EmployeesModel>(_Repos.Add(data));
+            return _modelmapper.Map<TblNhanvien, EmployeesModel>(_Repos.Add(data));
         }
         public EmployeesModel Update(int id,EmployeesRequest request)
         {
@@ -54,8 +54,8 @@ namespace BussinessLayer.Services
                 throw new Exception("Không tìm thấy nhân viên với id: " + id);
 
             }
-            _requestmapper.Map<EmployeesRequest, TbNhanvien>(request, data);
-            return _modelmapper.Map<TbNhanvien, EmployeesModel>(_Repos.Update(data));
+            _requestmapper.Map<EmployeesRequest, TblNhanvien>(request, data);
+            return _modelmapper.Map<TblNhanvien, EmployeesModel>(_Repos.Update(data));
         }
         public EmployeesModel UpdateRole(int id, String role)
         {
@@ -67,7 +67,7 @@ namespace BussinessLayer.Services
 
             }
             data.SVaiTro = role;
-            return _modelmapper.Map<TbNhanvien, EmployeesModel>(_Repos.Update(data));
+            return _modelmapper.Map<TblNhanvien, EmployeesModel>(_Repos.Update(data));
         }
         public void Delete(int id)
         {

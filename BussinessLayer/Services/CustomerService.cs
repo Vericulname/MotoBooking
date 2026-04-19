@@ -7,23 +7,23 @@ using Microsoft.Extensions.Logging;
 
 namespace BussinessLayer.Services
 {
-    public class CustomerService
+    public class CustomersService
     {
         private CustomersRepos _Repos;
         private Mapper _modelmapper;
         private Mapper _requestmapper;
 
 
-        public CustomerService()
+        public CustomersService()
         {
             _Repos = new CustomersRepos();
-            _modelmapper = ModelMapper<TbKhachhang, CustomerModel>.createMap();
-            _requestmapper = ModelMapper<TbKhachhang, CustomerRequest>.createMap();
+            _modelmapper = ModelMapper<TblKhachhang, CustomerModel>.createMap();
+            _requestmapper = ModelMapper<TblKhachhang, CustomerRequest>.createMap();
         }
         public List<CustomerModel> GetAll()
         {
-            List<TbKhachhang> data = _Repos.GetAll();
-            List<CustomerModel> lst = _modelmapper.Map<List<TbKhachhang>, List<CustomerModel>>(data);
+            List<TblKhachhang> data = _Repos.GetAll();
+            List<CustomerModel> lst = _modelmapper.Map<List<TblKhachhang>, List<CustomerModel>>(data);
             return lst;
         }
         public CustomerModel GetById(int id)
@@ -33,7 +33,7 @@ namespace BussinessLayer.Services
             {
                 throw new Exception("Không tìm thấy khách hàng với id: " + id);
             }
-            CustomerModel model = _modelmapper.Map<TbKhachhang, CustomerModel>(data);
+            CustomerModel model = _modelmapper.Map<TblKhachhang, CustomerModel>(data);
             return model;
             
         }
@@ -44,15 +44,15 @@ namespace BussinessLayer.Services
             {
                 throw new Exception("Không tìm thấy khách hàng với tên: " + name);
             }
-            CustomerModel model = _modelmapper.Map<TbKhachhang, CustomerModel>(data);
+            CustomerModel model = _modelmapper.Map<TblKhachhang, CustomerModel>(data);
             return model;
 
         }
         public CustomerModel Create(CustomerRequest request)
         {
-            TbKhachhang data = _requestmapper.Map<CustomerRequest, TbKhachhang>(request);
+            TblKhachhang data = _requestmapper.Map<CustomerRequest, TblKhachhang>(request);
             
-            return _modelmapper.Map<TbKhachhang, CustomerModel>(_Repos.Add(data));
+            return _modelmapper.Map<TblKhachhang, CustomerModel>(_Repos.Add(data));
         }
         public CustomerModel Update(int id,CustomerRequest request)
         {
@@ -63,8 +63,8 @@ namespace BussinessLayer.Services
                 throw new Exception("Không tìm thấy khách hàng với id: " + id);
 
             }
-            _requestmapper.Map<CustomerRequest, TbKhachhang>(request, data);
-            return _modelmapper.Map<TbKhachhang, CustomerModel>(_Repos.Update(data));
+            _requestmapper.Map<CustomerRequest, TblKhachhang>(request, data);
+            return _modelmapper.Map<TblKhachhang, CustomerModel>(_Repos.Update(data));
         }
         public void Delete(int id)
         {

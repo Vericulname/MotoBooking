@@ -11,21 +11,21 @@ namespace DataAccessLayer.Repository
 {
     public class VehiclesRepos
     {
-        public List<TbXe> GetAll()
+        public List<TblXe> GetAll()
         {
             using (var context = new MotoBookingContext())
             {
                 return context.TbXes.ToList();
             }
         }
-        public TbXe GetById(int id)
+        public TblXe GetById(int id)
         {
             using (var context = new MotoBookingContext())
             {
                 return context.TbXes.Find(id);
             }
         }
-        public TbXe Create(TbXe xe)
+        public TblXe Create(TblXe xe)
         {
             using (var context = new MotoBookingContext())
             {
@@ -34,7 +34,7 @@ namespace DataAccessLayer.Repository
                 return xe;
             }
         }
-        public TbXe Update(TbXe xe)
+        public TblXe Update(TblXe xe)
         {
             using (var context = new MotoBookingContext())
             {

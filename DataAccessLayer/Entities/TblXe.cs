@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Entities;
 
-[Table("tbXe")]
+[Table("tblXe")]
 [Index("SBienSo", Name = "UQ__tbXe__EDF66DCF673901C5", IsUnique = true)]
-public partial class TbXe
+public partial class TblXe
 {
     [Key]
     [Column("PK_iXe")]
@@ -49,8 +49,8 @@ public partial class TbXe
     public string? SMoTa { get; set; }
 
     [InverseProperty("FkIXeNavigation")]
-    public virtual ICollection<TbDonDatXe> TbDonDatXes { get; set; } = new List<TbDonDatXe>();
+    public virtual ICollection<TblDonDatXe> TbDonDatXes { get; set; } = new List<TblDonDatXe>();
 
     [InverseProperty("FkIXeNavigation")]
-    public virtual ICollection<TbHopDong> TbHopDongs { get; set; } = new List<TbHopDong>();
+    public virtual ICollection<TblHopDong> TbHopDongs { get; set; } = new List<TblHopDong>();
 }

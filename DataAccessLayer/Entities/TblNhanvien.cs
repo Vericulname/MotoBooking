@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Entities;
 
-[Table("tbNhanvien")]
+[Table("tblNhanvien")]
 [Index("SSoDienThoai", Name = "UQ__tbNhanvi__B6E2FD9DF5A449B3", IsUnique = true)]
-public partial class TbNhanvien
+public partial class TblNhanvien
 {
     [Key]
     [Column("PK_iNhanvien")]
@@ -36,5 +36,5 @@ public partial class TbNhanvien
     public DateTime? DNgayTao { get; set; }
 
     [InverseProperty("FkINhanvienNavigation")]
-    public virtual ICollection<TbHopDong> TbHopDongs { get; set; } = new List<TbHopDong>();
+    public virtual ICollection<TblHopDong> TbHopDongs { get; set; } = new List<TblHopDong>();
 }

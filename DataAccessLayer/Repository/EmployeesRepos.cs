@@ -11,21 +11,21 @@ namespace DataAccessLayer.Repository
 {
     public class EmployeesRepos
     {
-        public List<TbNhanvien> GetAll()
+        public List<TblNhanvien> GetAll()
         {
             using (var context = new MotoBookingContext())
             {
                 return context.TbNhanviens.ToList();
             }
         }
-        public TbNhanvien GetById(int id)
+        public TblNhanvien GetById(int id)
         {
             using (var context = new MotoBookingContext())
             {
                 return context.TbNhanviens.Find(id);
             }
         }
-        public TbNhanvien Add(TbNhanvien nhanvien)
+        public TblNhanvien Add(TblNhanvien nhanvien)
         {
             using (var context = new MotoBookingContext())
             {
@@ -34,7 +34,7 @@ namespace DataAccessLayer.Repository
                 return nhanvien;
             }
         }
-        public TbNhanvien Update(TbNhanvien nhanvien)
+        public TblNhanvien Update(TblNhanvien nhanvien)
         {
             using (var context = new MotoBookingContext())
             {

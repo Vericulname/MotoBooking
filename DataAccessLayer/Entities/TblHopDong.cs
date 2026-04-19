@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Entities;
 
-[Table("tbHopDong")]
-public partial class TbHopDong
+[Table("tblHopDong")]
+public partial class TblHopDong
 {
     [Key]
     [Column("PK_iHopDong")]
@@ -42,43 +42,31 @@ public partial class TbHopDong
 
     [Column("fTienThueThucTe", TypeName = "decimal(10, 2)")]
     public decimal? FTienThueThucTe { get; set; }
-
-    [Column("fPhatTraMuon", TypeName = "decimal(10, 2)")]
-    public decimal? FPhatTraMuon { get; set; }
-
-    [Column("fPhatHuHong", TypeName = "decimal(10, 2)")]
-    public decimal? FPhatHuHong { get; set; }
-
-    [Column("fTongTien", TypeName = "decimal(10, 2)")]
-    public decimal? FTongTien { get; set; }
-
-    [Column("fTienHoanLai", TypeName = "decimal(10, 2)")]
-    public decimal? FTienHoanLai { get; set; }
-
+  
     [Column("sTrangThai")]
     [StringLength(20)]
     public string? STrangThai { get; set; }
 
     [ForeignKey("FkIDonDat")]
     [InverseProperty("TbHopDongs")]
-    public virtual TbDonDatXe? FkIDonDatNavigation { get; set; }
+    public virtual TblDonDatXe? FkIDonDatNavigation { get; set; }
 
     [ForeignKey("FkIKhachhang")]
     [InverseProperty("TbHopDongs")]
-    public virtual TbKhachhang? FkIKhachhangNavigation { get; set; }
+    public virtual TblKhachhang? FkIKhachhangNavigation { get; set; }
 
     [ForeignKey("FkILoaiHuHong")]
     [InverseProperty("TbHopDongs")]
-    public virtual TbLoaiHuHong? FkILoaiHuHongNavigation { get; set; }
+    public virtual TblLoaiHuHong? FkILoaiHuHongNavigation { get; set; }
 
     [ForeignKey("FkINhanvien")]
     [InverseProperty("TbHopDongs")]
-    public virtual TbNhanvien? FkINhanvienNavigation { get; set; }
+    public virtual TblNhanvien? FkINhanvienNavigation { get; set; }
 
     [ForeignKey("FkIXe")]
     [InverseProperty("TbHopDongs")]
-    public virtual TbXe? FkIXeNavigation { get; set; }
+    public virtual TblXe? FkIXeNavigation { get; set; }
 
     [InverseProperty("FkIHopDongNavigation")]
-    public virtual ICollection<TbHoaDon> TbHoaDons { get; set; } = new List<TbHoaDon>();
+    public virtual ICollection<TblHoaDon> TbHoaDons { get; set; } = new List<TblHoaDon>();
 }

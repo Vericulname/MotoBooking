@@ -11,21 +11,21 @@ namespace DataAccessLayer.Repository
 {
     public class DamageTypeRepos
     {
-        public List<TbLoaiHuHong> GetAll()
+        public List<TblLoaiHuHong> GetAll()
         {
             using (var context = new MotoBookingContext())
             {
                 return context.TbLoaiHuHongs.ToList();
             }
         }
-        public TbLoaiHuHong GetById(int id)
+        public TblLoaiHuHong GetById(int id)
         {
             using (var context = new MotoBookingContext())
             {
                 return context.TbLoaiHuHongs.Find(id);
             }
         }
-        public TbLoaiHuHong Add(TbLoaiHuHong khachhang)
+        public TblLoaiHuHong Add(TblLoaiHuHong khachhang)
         {
             using (var context = new MotoBookingContext())
             {
@@ -34,7 +34,7 @@ namespace DataAccessLayer.Repository
                 return khachhang;
             }
         }
-        public TbLoaiHuHong Update(TbLoaiHuHong khachhang)
+        public TblLoaiHuHong Update(TblLoaiHuHong khachhang)
         {
             using (var context = new MotoBookingContext())
             {

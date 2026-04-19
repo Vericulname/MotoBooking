@@ -11,21 +11,21 @@ namespace DataAccessLayer.Repository
 {
     public class InvoiceRepos
     {
-        public List<TbHoaDon> GetAll()
+        public List<TblHoaDon> GetAll()
         {
             using (var context = new MotoBookingContext())
             {
                 return context.TbHoaDons.ToList();
             }
         }
-        public TbHoaDon GetById(int id)
+        public TblHoaDon GetById(int id)
         {
             using (var context = new MotoBookingContext())
             {
                 return context.TbHoaDons.Find(id);
             }
         }
-        public TbHoaDon Add(TbHoaDon hoaDon)
+        public TblHoaDon Add(TblHoaDon hoaDon)
         {
             using (var context = new MotoBookingContext())
             {
@@ -34,7 +34,7 @@ namespace DataAccessLayer.Repository
                 return hoaDon;
             }
         }
-        public TbHoaDon Update(TbHoaDon hoaDon)
+        public TblHoaDon Update(TblHoaDon hoaDon)
         {
             using (var context = new MotoBookingContext())
             {

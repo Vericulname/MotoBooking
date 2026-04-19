@@ -20,14 +20,14 @@ namespace BussinessLayer.Services
         public VehicleService() {
             _Repos = new VehiclesRepos();
 
-            _modelmapper = ModelMapper<TbXe, VehiclesModel>.createMap();
-            _requestmapper = ModelMapper<TbXe, VehicleRequest>.createMap();
+            _modelmapper = ModelMapper<TblXe, VehiclesModel>.createMap();
+            _requestmapper = ModelMapper<TblXe, VehicleRequest>.createMap();
         }
 
         public List<VehiclesModel> GetAll()
         {
-            List<TbXe> data = _Repos.GetAll();
-            List<VehiclesModel> lst = _modelmapper.Map<List<TbXe>, List<VehiclesModel>>(data);
+            List<TblXe> data = _Repos.GetAll();
+            List<VehiclesModel> lst = _modelmapper.Map<List<TblXe>, List<VehiclesModel>>(data);
             return lst;
         }
         public VehiclesModel GetById(int id)
@@ -37,19 +37,19 @@ namespace BussinessLayer.Services
             {
                 throw new Exception("Không tìm thấy xe với id: " + id);
             }
-            VehiclesModel model = _modelmapper.Map<TbXe, VehiclesModel>(data);
+            VehiclesModel model = _modelmapper.Map<TblXe, VehiclesModel>(data);
             return model;
         }
         public VehiclesModel Create(VehicleRequest request)
         {
-            TbXe entity = _requestmapper.Map<VehicleRequest, TbXe>(request);
+            TblXe entity = _requestmapper.Map<VehicleRequest, TblXe>(request);
        
-            VehiclesModel model = _modelmapper.Map<TbXe, VehiclesModel>(_Repos.Create(entity));
+            VehiclesModel model = _modelmapper.Map<TblXe, VehiclesModel>(_Repos.Create(entity));
             return model;
         }
         public VehiclesModel UpdateStatus(int id,String status)
         {
-            TbXe entity = _Repos.GetById(id);
+            TblXe entity = _Repos.GetById(id);
             if (entity == null)
             {
             throw new Exception("Không tìm thấy xe với id: " + id);
@@ -57,7 +57,7 @@ namespace BussinessLayer.Services
             }
 
             entity.STrangThai = status;
-            VehiclesModel model = _modelmapper.Map<TbXe, VehiclesModel>(_Repos.Update(entity));
+            VehiclesModel model = _modelmapper.Map<TblXe, VehiclesModel>(_Repos.Update(entity));
             return model;
         }
         public VehiclesModel UpdateVehicle(int id, VehicleRequest request)
@@ -68,8 +68,8 @@ namespace BussinessLayer.Services
                 throw new Exception("Không tìm thấy xe với id: " + id);
 
             }
-            _requestmapper.Map<VehicleRequest, TbXe>(request, data);
-            VehiclesModel model = _modelmapper.Map<TbXe, VehiclesModel>(_Repos.Update(data));
+            _requestmapper.Map<VehicleRequest, TblXe>(request, data);
+            VehiclesModel model = _modelmapper.Map<TblXe, VehiclesModel>(_Repos.Update(data));
             return model;
         }
         public void Delete(int id)

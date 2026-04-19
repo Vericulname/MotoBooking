@@ -11,21 +11,21 @@ namespace DataAccessLayer.Repository
 {
     public class ContractsRepos
     {
-        public List<TbHopDong> GetAll()
+        public List<TblHopDong> GetAll()
         {
             using (var context = new MotoBookingContext())
             {
                 return context.TbHopDongs.ToList();
             }
         }
-        public TbHopDong GetById(int id)
+        public TblHopDong GetById(int id)
         {
             using (var context = new MotoBookingContext())
             {
                 return context.TbHopDongs.Find(id);
             }
         }
-        public TbHopDong Add(TbHopDong khachhang)
+        public TblHopDong Add(TblHopDong khachhang)
         {
             using (var context = new MotoBookingContext())
             {
@@ -34,7 +34,7 @@ namespace DataAccessLayer.Repository
                 return khachhang;
             }
         }
-        public TbHopDong Update(TbHopDong khachhang)
+        public TblHopDong Update(TblHopDong khachhang)
         {
             using (var context = new MotoBookingContext())
             {

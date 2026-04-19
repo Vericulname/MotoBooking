@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Entities;
 
-[Table("tbHoaDon")]
-public partial class TbHoaDon
+[Table("tblHoaDon")]
+public partial class TblHoaDon
 {
     [Key]
     [Column("PK_iHoaDon")]
@@ -19,9 +19,6 @@ public partial class TbHoaDon
     [Column("dNgayLap", TypeName = "datetime")]
     public DateTime? DNgayLap { get; set; }
 
-    [Column("fTongTien", TypeName = "decimal(10, 2)")]
-    public decimal? FTongTien { get; set; }
-
     [Column("sPhuongThucThanhToan")]
     [StringLength(20)]
     public string? SPhuongThucThanhToan { get; set; }
@@ -32,5 +29,5 @@ public partial class TbHoaDon
 
     [ForeignKey("FkIHopDong")]
     [InverseProperty("TbHoaDons")]
-    public virtual TbHopDong? FkIHopDongNavigation { get; set; }
+    public virtual TblHopDong? FkIHopDongNavigation { get; set; }
 }

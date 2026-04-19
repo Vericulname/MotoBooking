@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Entities;
 
-[Table("tbLoaiHuHong")]
-public partial class TbLoaiHuHong
+[Table("tblLoaiHuHong")]
+public partial class TblLoaiHuHong
 {
     [Key]
     [Column("PK_iLoaiHuHong")]
@@ -22,5 +22,5 @@ public partial class TbLoaiHuHong
     public string FPhiPhat { get; set; } = null!;
 
     [InverseProperty("FkILoaiHuHongNavigation")]
-    public virtual ICollection<TbHopDong> TbHopDongs { get; set; } = new List<TbHopDong>();
+    public virtual ICollection<TblHopDong> TbHopDongs { get; set; } = new List<TblHopDong>();
 }
