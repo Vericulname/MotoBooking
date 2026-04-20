@@ -15,28 +15,28 @@ namespace DataAccessLayer.Repository
         {
             using (var context = new MotoBookingContext())
             {
-                return context.TbKhachhangs.ToList();
+                return context.TblKhachhangs.ToList();
             }
         }
         public TblKhachhang GetById(int id)
         {
             using (var context = new MotoBookingContext())
             {
-                return context.TbKhachhangs.Find(id);
+                return context.TblKhachhangs.Find(id);
             }
         }
         public TblKhachhang GetByName(String name)
         {
             using (var context = new MotoBookingContext())
             {
-                return context.TbKhachhangs.FirstOrDefault(k => k.SHoTen == name);
+                return context.TblKhachhangs.FirstOrDefault(k => k.SHoTen == name);
             }
         }
         public TblKhachhang Add(TblKhachhang khachhang)
         {
             using (var context = new MotoBookingContext())
             {
-                context.TbKhachhangs.Add(khachhang);
+                context.TblKhachhangs.Add(khachhang);
                 context.SaveChanges();
                 return khachhang;
             }
@@ -45,7 +45,7 @@ namespace DataAccessLayer.Repository
         {
             using (var context = new MotoBookingContext())
             {
-                context.TbKhachhangs.Update(khachhang);
+                context.TblKhachhangs.Update(khachhang);
                 context.SaveChanges();
                 return khachhang;
             }
@@ -54,9 +54,9 @@ namespace DataAccessLayer.Repository
         {
             using (var context = new MotoBookingContext())
             {
-                var khachhang = context.TbKhachhangs.Find(id);
+                var khachhang = context.TblKhachhangs.Find(id);
                 
-                    context.TbKhachhangs.Remove(khachhang);
+                    context.TblKhachhangs.Remove(khachhang);
                 context.SaveChanges();
                 
             }

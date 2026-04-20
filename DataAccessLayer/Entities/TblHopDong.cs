@@ -17,56 +17,42 @@ public partial class TblHopDong
     public int? FkIDonDat { get; set; }
 
     [Column("FK_iKhachhang")]
-    public int? FkIKhachhang { get; set; }
+    public int FkIKhachhang { get; set; }
 
     [Column("FK_iNhanvien")]
-    public int? FkINhanvien { get; set; }
-
-    [Column("FK_iLoaiHuHong")]
-    public int? FkILoaiHuHong { get; set; }
+    public int FkINhanvien { get; set; }
 
     [Column("FK_iXe")]
-    public int? FkIXe { get; set; }
+    public int FkIXe { get; set; }
 
     [Column("dGiaoThucTe", TypeName = "datetime")]
     public DateTime? DGiaoThucTe { get; set; }
 
     [Column("dTraDuKien", TypeName = "datetime")]
-    public DateTime? DTraDuKien { get; set; }
+    public DateTime DTraDuKien { get; set; }
 
     [Column("dTraThucTe", TypeName = "datetime")]
-    public DateTime? DTraThucTe { get; set; }
+    public DateTime DTraThucTe { get; set; }
 
     [Column("fTienCocDaNhan", TypeName = "decimal(10, 2)")]
-    public decimal? FTienCocDaNhan { get; set; }
-
-    [Column("fTienThueThucTe", TypeName = "decimal(10, 2)")]
-    public decimal? FTienThueThucTe { get; set; }
-  
-    [Column("sTrangThai")]
-    [StringLength(20)]
-    public string? STrangThai { get; set; }
+    public decimal FTienCocDaNhan { get; set; }
 
     [ForeignKey("FkIDonDat")]
-    [InverseProperty("TbHopDongs")]
+    [InverseProperty("TblHopDongs")]
     public virtual TblDonDatXe? FkIDonDatNavigation { get; set; }
 
     [ForeignKey("FkIKhachhang")]
-    [InverseProperty("TbHopDongs")]
-    public virtual TblKhachhang? FkIKhachhangNavigation { get; set; }
-
-    [ForeignKey("FkILoaiHuHong")]
-    [InverseProperty("TbHopDongs")]
-    public virtual TblLoaiHuHong? FkILoaiHuHongNavigation { get; set; }
+    [InverseProperty("TblHopDongs")]
+    public virtual TblKhachhang FkIKhachhangNavigation { get; set; } = null!;
 
     [ForeignKey("FkINhanvien")]
-    [InverseProperty("TbHopDongs")]
-    public virtual TblNhanvien? FkINhanvienNavigation { get; set; }
+    [InverseProperty("TblHopDongs")]
+    public virtual TblNhanvien FkINhanvienNavigation { get; set; } = null!;
 
     [ForeignKey("FkIXe")]
-    [InverseProperty("TbHopDongs")]
-    public virtual TblXe? FkIXeNavigation { get; set; }
+    [InverseProperty("TblHopDongs")]
+    public virtual TblXe FkIXeNavigation { get; set; } = null!;
 
     [InverseProperty("FkIHopDongNavigation")]
-    public virtual ICollection<TblHoaDon> TbHoaDons { get; set; } = new List<TblHoaDon>();
+    public virtual ICollection<TblHoaDon> TblHoaDons { get; set; } = new List<TblHoaDon>();
 }

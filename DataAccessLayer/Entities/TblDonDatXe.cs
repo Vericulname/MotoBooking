@@ -14,10 +14,10 @@ public partial class TblDonDatXe
     public int PkIDonDat { get; set; }
 
     [Column("FK_iKhachhang")]
-    public int? FkIKhachhang { get; set; }
+    public int FkIKhachhang { get; set; }
 
     [Column("FK_iXe")]
-    public int? FkIXe { get; set; }
+    public int FkIXe { get; set; }
 
     [Column("dThoiGianBatDau", TypeName = "datetime")]
     public DateTime DThoiGianBatDau { get; set; }
@@ -26,29 +26,28 @@ public partial class TblDonDatXe
     public DateTime DThoiGianKetThuc { get; set; }
 
     [Column("fGiaTamTinh", TypeName = "decimal(10, 2)")]
-    public decimal? FGiaTamTinh { get; set; }
+    public decimal FGiaTamTinh { get; set; }
 
     [Column("fTienCoc", TypeName = "decimal(10, 2)")]
-    public decimal? FTienCoc { get; set; }
+    public decimal FTienCoc { get; set; }
 
-    [Column("sTrangThai")]
-    [StringLength(20)]
-    public string? STrangThai { get; set; }
+    [Column("bTrangThai")]
+    public bool BTrangThai { get; set; }
 
     [Column("dNgayTao", TypeName = "datetime")]
     public DateTime? DNgayTao { get; set; }
 
     [Column("dNgayHuy", TypeName = "datetime")]
     public DateTime? DNgayHuy { get; set; }
-    [ForeignKey("FkIKhachhang")]
 
-    [InverseProperty("TbDonDatXes")]
-    public virtual TblKhachhang? FkIKhachhangNavigation { get; set; }
+    [ForeignKey("FkIKhachhang")]
+    [InverseProperty("TblDonDatXes")]
+    public virtual TblKhachhang FkIKhachhangNavigation { get; set; } = null!;
 
     [ForeignKey("FkIXe")]
-    [InverseProperty("TbDonDatXes")]
-    public virtual TblXe? FkIXeNavigation { get; set; }
+    [InverseProperty("TblDonDatXes")]
+    public virtual TblXe FkIXeNavigation { get; set; } = null!;
 
     [InverseProperty("FkIDonDatNavigation")]
-    public virtual ICollection<TblHopDong> TbHopDongs { get; set; } = new List<TblHopDong>();
+    public virtual ICollection<TblHopDong> TblHopDongs { get; set; } = new List<TblHopDong>();
 }

@@ -16,83 +16,90 @@ public partial class MotoBookingContext : DbContext
     {
     }
 
+    public virtual DbSet<TblDonDatXe> TblDonDatXes { get; set; }
+
+    public virtual DbSet<TblHoaDon> TblHoaDons { get; set; }
+
+    public virtual DbSet<TblHopDong> TblHopDongs { get; set; }
+
+    public virtual DbSet<TblKhachhang> TblKhachhangs { get; set; }
+
+    public virtual DbSet<TblLoaiHuHong> TblLoaiHuHongs { get; set; }
+
+    public virtual DbSet<TblNhanvien> TblNhanviens { get; set; }
+
+    public virtual DbSet<TblXe> TblXes { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            optionsBuilder.UseSqlServer("Data Source=NIKOCUTE;Initial Catalog=MotoBooking;Integrated Security=True;TrustServerCertificate=True");
-        }
-    }
-
-    public virtual DbSet<TblDonDatXe> TbDonDatXes { get; set; }
-
-    public virtual DbSet<TblHoaDon> TbHoaDons { get; set; }
-
-    public virtual DbSet<TblHopDong> TbHopDongs { get; set; }
-
-    public virtual DbSet<TblKhachhang> TbKhachhangs { get; set; }
-
-    public virtual DbSet<TblLoaiHuHong> TbLoaiHuHongs { get; set; }
-
-    public virtual DbSet<TblNhanvien> TbNhanviens { get; set; }
-
-    public virtual DbSet<TblXe> TbXes { get; set; }
-
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Data Source=NIKOCUTE;Initial Catalog=MotoBooking;Integrated Security=True;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TblDonDatXe>(entity =>
         {
-            entity.HasKey(e => e.PkIDonDat).HasName("PK__tbDonDat__0E5EC6C3236B871E");
+            entity.HasKey(e => e.PkIDonDat).HasName("PK__tblDonDa__0E5EC6C38E6ADD64");
 
             entity.Property(e => e.DNgayTao).HasDefaultValueSql("(getdate())");
 
-            entity.HasOne(d => d.FkIKhachhangNavigation).WithMany(p => p.TbDonDatXes).HasConstraintName("FK_iKhachHang_tbDonDatXe");
+            entity.HasOne(d => d.FkIKhachhangNavigation).WithMany(p => p.TblDonDatXes)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_iKhachHang_tbDonDatXe");
 
-            entity.HasOne(d => d.FkIXeNavigation).WithMany(p => p.TbDonDatXes).HasConstraintName("FK_iXe_tbDonDatXe");
+            entity.HasOne(d => d.FkIXeNavigation).WithMany(p => p.TblDonDatXes)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_iXe_tbDonDatXe");
         });
 
         modelBuilder.Entity<TblHoaDon>(entity =>
         {
-            entity.HasKey(e => e.PkIHoaDon).HasName("PK__tbHoaDon__6B5DB2B155B2EA1B");
+            entity.HasKey(e => e.PkIHoaDon).HasName("PK__tblHoaDo__6B5DB2B1D732225B");
 
             entity.Property(e => e.DNgayLap).HasDefaultValueSql("(getdate())");
 
-            entity.HasOne(d => d.FkIHopDongNavigation).WithMany(p => p.TbHoaDons).HasConstraintName("FK_iHopDong_tbHoaDon");
+            entity.HasOne(d => d.FkIHopDongNavigation).WithMany(p => p.TblHoaDons)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_iHopDong_tblHoaDon");
+
+            entity.HasOne(d => d.FkILoaiHuHongNavigation).WithMany(p => p.TblHoaDons).HasConstraintName("FK_iLoaiHuHong_tblHoaDon");
         });
 
         modelBuilder.Entity<TblHopDong>(entity =>
         {
-            entity.HasKey(e => e.PkIHopDong).HasName("PK__tbHopDon__AC7D3350E14F60F8");
+            entity.HasKey(e => e.PkIHopDong).HasName("PK__tblHopDo__AC7D3350EBC32563");
 
+            entity.Property(e => e.DGiaoThucTe).HasDefaultValueSql("(getdate())");
 
-            entity.HasOne(d => d.FkIDonDatNavigation).WithMany(p => p.TbHopDongs).HasConstraintName("FK_iDonDat_tbHopDong");
+            entity.HasOne(d => d.FkIDonDatNavigation).WithMany(p => p.TblHopDongs).HasConstraintName("FK_iDonDat_tbHopDong");
 
-            entity.HasOne(d => d.FkIKhachhangNavigation).WithMany(p => p.TbHopDongs).HasConstraintName("FK_iKhachHang_tbHopDong");
+            entity.HasOne(d => d.FkIKhachhangNavigation).WithMany(p => p.TblHopDongs)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_iKhachHang_tbHopDong");
 
-            entity.HasOne(d => d.FkILoaiHuHongNavigation).WithMany(p => p.TbHopDongs).HasConstraintName("FK_iLoaiHuHong_tbHopDong");
+            entity.HasOne(d => d.FkINhanvienNavigation).WithMany(p => p.TblHopDongs)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_iNhanvien_tbHopDong");
 
-            entity.HasOne(d => d.FkINhanvienNavigation).WithMany(p => p.TbHopDongs).HasConstraintName("FK_iNhanvien_tbHopDong");
-
-            entity.HasOne(d => d.FkIXeNavigation).WithMany(p => p.TbHopDongs).HasConstraintName("FK_iXe_tbHopDong");
+            entity.HasOne(d => d.FkIXeNavigation).WithMany(p => p.TblHopDongs)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_iXe_tbHopDong");
         });
 
         modelBuilder.Entity<TblKhachhang>(entity =>
         {
-            entity.HasKey(e => e.PkIKhachhang).HasName("PK__tbKhachh__A452B8335BD13061");
+            entity.HasKey(e => e.PkIKhachhang).HasName("PK__tblKhach__A452B8334A185BAE");
 
             entity.Property(e => e.DNgayTao).HasDefaultValueSql("(getdate())");
         });
 
         modelBuilder.Entity<TblLoaiHuHong>(entity =>
         {
-            entity.HasKey(e => e.PkILoaiHuHong).HasName("PK__tbLoaiHu__2A25785CE794488D");
+            entity.HasKey(e => e.PkILoaiHuHong).HasName("PK__tblLoaiH__2A25785C845BC629");
         });
 
         modelBuilder.Entity<TblNhanvien>(entity =>
         {
-            entity.HasKey(e => e.PkINhanvien).HasName("PK__tbNhanvi__10619B37095AC3DD");
+            entity.HasKey(e => e.PkINhanvien).HasName("PK__tblNhanv__10619B37BCD1F8A1");
 
             entity.Property(e => e.DNgayTao).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.SVaiTro).HasDefaultValue("staff");
@@ -100,7 +107,7 @@ public partial class MotoBookingContext : DbContext
 
         modelBuilder.Entity<TblXe>(entity =>
         {
-            entity.HasKey(e => e.PkIXe).HasName("PK__tbXe__08A9345011DF2211");
+            entity.HasKey(e => e.PkIXe).HasName("PK__tblXe__08A93450BD85DD4E");
 
             entity.Property(e => e.STrangThai).HasDefaultValue("available");
         });

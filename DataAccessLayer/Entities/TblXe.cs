@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace DataAccessLayer.Entities;
 
 [Table("tblXe")]
-[Index("SBienSo", Name = "UQ__tbXe__EDF66DCF673901C5", IsUnique = true)]
+[Index("SBienSo", Name = "UQ__tblXe__EDF66DCF299F8861", IsUnique = true)]
 public partial class TblXe
 {
     [Key]
@@ -21,20 +21,17 @@ public partial class TblXe
 
     [Column("sThuongHieu")]
     [StringLength(50)]
-    public string? SThuongHieu { get; set; }
+    public string SThuongHieu { get; set; } = null!;
 
     [Column("sLoaiXe")]
     [StringLength(50)]
-    public string? SLoaiXe { get; set; }
-
-    [Column("iSoGhe")]
-    public int? ISoGhe { get; set; }
+    public string SLoaiXe { get; set; } = null!;
 
     [Column("fGiaNgay", TypeName = "decimal(10, 2)")]
     public decimal FGiaNgay { get; set; }
 
     [Column("fGiaGio", TypeName = "decimal(10, 2)")]
-    public decimal? FGiaGio { get; set; }
+    public decimal FGiaGio { get; set; }
 
     [Column("sTrangThai")]
     [StringLength(20)]
@@ -43,14 +40,14 @@ public partial class TblXe
     [Column("sAnhURL")]
     [StringLength(255)]
     [Unicode(false)]
-    public string? SAnhUrl { get; set; }
+    public string SAnhUrl { get; set; } = null!;
 
     [Column("sMoTa", TypeName = "ntext")]
     public string? SMoTa { get; set; }
 
     [InverseProperty("FkIXeNavigation")]
-    public virtual ICollection<TblDonDatXe> TbDonDatXes { get; set; } = new List<TblDonDatXe>();
+    public virtual ICollection<TblDonDatXe> TblDonDatXes { get; set; } = new List<TblDonDatXe>();
 
     [InverseProperty("FkIXeNavigation")]
-    public virtual ICollection<TblHopDong> TbHopDongs { get; set; } = new List<TblHopDong>();
+    public virtual ICollection<TblHopDong> TblHopDongs { get; set; } = new List<TblHopDong>();
 }

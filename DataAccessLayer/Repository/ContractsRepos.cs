@@ -15,14 +15,14 @@ namespace DataAccessLayer.Repository
         {
             using (var context = new MotoBookingContext())
             {
-                return context.TbHopDongs.ToList();
+                return context.TblHopDongs.ToList();
             }
         }
         public TblHopDong GetById(int id)
         {
             using (var context = new MotoBookingContext())
             {
-                return context.TbHopDongs.Find(id);
+                return context.TblHopDongs.Find(id);
             }
         }
         public TblHopDong Add(TblHopDong hopDong)
@@ -36,7 +36,7 @@ namespace DataAccessLayer.Repository
                 //context.Attach(hopDong.FkINhanvienNavigation);
                 //context.Attach(hopDong.FkIXeNavigation);
 
-                context.TbHopDongs.Add(hopDong);
+                context.TblHopDongs.Add(hopDong);
                 context.SaveChanges();
                 return hopDong;
             }
@@ -52,7 +52,7 @@ namespace DataAccessLayer.Repository
                 //context.Attach(hopDong.FkIXeNavigation);
                 
 
-                context.TbHopDongs.Update(hopDong);
+                context.TblHopDongs.Update(hopDong);
                 context.SaveChanges();
                 return hopDong;
             }
@@ -61,9 +61,9 @@ namespace DataAccessLayer.Repository
         {
             using (var context = new MotoBookingContext())
             {
-                var hopDong = context.TbHopDongs.Find(id);
+                var hopDong = context.TblHopDongs.Find(id);
                 
-                    context.TbHopDongs.Remove(hopDong);
+                    context.TblHopDongs.Remove(hopDong);
                 context.SaveChanges();
                 
             }

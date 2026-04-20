@@ -18,9 +18,8 @@ public partial class TblLoaiHuHong
     public string STenHuHong { get; set; } = null!;
 
     [Column("fPhiPhat", TypeName = "decimal(10, 2)")]
-
     public decimal FPhiPhat { get; set; }
 
     [InverseProperty("FkILoaiHuHongNavigation")]
-    public virtual ICollection<TblHopDong> TbHopDongs { get; set; } = new List<TblHopDong>();
+    public virtual ICollection<TblHoaDon> TblHoaDons { get; set; } = new List<TblHoaDon>();
 }

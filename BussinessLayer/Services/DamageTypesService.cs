@@ -11,7 +11,7 @@ namespace BussinessLayer.Services
     {
         private DamageTypeRepos _Repos;
         private Mapper _modelmapper;
-        private Mapper _requestmapper;
+
 
 
         public DamageTypesService()

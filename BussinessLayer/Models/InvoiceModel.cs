@@ -12,8 +12,10 @@ namespace BussinessLayer.Models
     public class InvoiceModel
     {
         public int PkIHoaDon { get; set; }
-        public string? SPhuongThucThanhToan { get; set; }
-        public string? STrangThaiThanhToan { get; set; }
+        public int FkIHopDong { get; set; }
+        public int? FkILoaiHuHong { get; set; }
+        public string SPhuongThucThanhToan { get; set; }
+        public string STrangThaiThanhToan { get; set; }
         public DateTime? DNgayLap { get; set; }
 
 

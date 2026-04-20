@@ -15,14 +15,14 @@ namespace DataAccessLayer.Repository
         {
             using (var context = new MotoBookingContext())
             {
-                return context.TbDonDatXes.ToList();
+                return context.TblDonDatXes.ToList();
             }
         }
         public TblDonDatXe GetById(int? id)
         {
             using (var context = new MotoBookingContext())
             {
-                return context.TbDonDatXes.Find(id);
+                return context.TblDonDatXes.Find(id);
             }
         }
         public TblDonDatXe Add(TblDonDatXe donDatXe)
@@ -32,7 +32,7 @@ namespace DataAccessLayer.Repository
                 //context.Attach(donDatXe.FkIXeNavigation);
                 //context.Attach(donDatXe.FkIKhachhangNavigation);
 
-                context.TbDonDatXes.Add(donDatXe);
+                context.TblDonDatXes.Add(donDatXe);
                 context.SaveChanges();
                 return donDatXe;
             }
@@ -44,7 +44,7 @@ namespace DataAccessLayer.Repository
                 //context.Attach(donDatXe.FkIXeNavigation);
                 //context.Attach(donDatXe.FkIKhachhangNavigation);
 
-                context.TbDonDatXes.Update(donDatXe);
+                context.TblDonDatXes.Update(donDatXe);
                 context.SaveChanges();
                 return donDatXe;
             }
@@ -53,9 +53,9 @@ namespace DataAccessLayer.Repository
         {
             using (var context = new MotoBookingContext())
             {
-                var donDatXe = context.TbDonDatXes.Find(id);
+                var donDatXe = context.TblDonDatXes.Find(id);
                 
-                    context.TbDonDatXes.Remove(donDatXe);
+                    context.TblDonDatXes.Remove(donDatXe);
                 context.SaveChanges();
                 
             }

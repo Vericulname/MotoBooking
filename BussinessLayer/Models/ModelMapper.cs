@@ -12,8 +12,6 @@ namespace BussinessLayer.Models
     {
         Tsource source;
         Tdestination destination;
-
-       
         public static Mapper createMap()
         {
             ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>

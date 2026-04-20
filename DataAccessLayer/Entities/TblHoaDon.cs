@@ -14,20 +14,27 @@ public partial class TblHoaDon
     public int PkIHoaDon { get; set; }
 
     [Column("FK_iHopDong")]
-    public int? FkIHopDong { get; set; }
+    public int FkIHopDong { get; set; }
 
     [Column("dNgayLap", TypeName = "datetime")]
     public DateTime? DNgayLap { get; set; }
 
+    [Column("FK_iLoaiHuHong")]
+    public int? FkILoaiHuHong { get; set; }
+
     [Column("sPhuongThucThanhToan")]
     [StringLength(20)]
-    public string? SPhuongThucThanhToan { get; set; }
+    public string SPhuongThucThanhToan { get; set; } = null!;
 
     [Column("sTrangThaiThanhToan")]
     [StringLength(20)]
-    public string? STrangThaiThanhToan { get; set; }
+    public string STrangThaiThanhToan { get; set; } = null!;
 
     [ForeignKey("FkIHopDong")]
-    [InverseProperty("TbHoaDons")]
-    public virtual TblHopDong? FkIHopDongNavigation { get; set; }
+    [InverseProperty("TblHoaDons")]
+    public virtual TblHopDong FkIHopDongNavigation { get; set; } = null!;
+
+    [ForeignKey("FkILoaiHuHong")]
+    [InverseProperty("TblHoaDons")]
+    public virtual TblLoaiHuHong? FkILoaiHuHongNavigation { get; set; }
 }

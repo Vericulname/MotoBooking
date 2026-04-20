@@ -15,7 +15,7 @@ namespace BussinessLayer.Services
 
         private OrdersRepos _OrdersRepos;
         private EmployeesRepos _EmployeesRepos;
-        private DamageTypeRepos _DamageTypeRepos;
+
         private CustomersRepos _CustomerRepos;
         private VehiclesRepos _VehiclesRepos;
 
@@ -31,7 +31,6 @@ namespace BussinessLayer.Services
             _EmployeesRepos = new EmployeesRepos();
             _CustomerRepos = new CustomersRepos();
             _VehiclesRepos = new VehiclesRepos();
-            _DamageTypeRepos = new DamageTypeRepos();
 
             _modelmapper = ModelMapper<TblHopDong, ContractsModel>.createMap();
             _requestmapper = ModelMapper<TblHopDong, ContractsRequest>.createMap();
@@ -87,30 +86,31 @@ namespace BussinessLayer.Services
             //damagetype.FPhiPhat = 0.0M;
             //damagetype.STenHuHong = "";
 
+            if (request.FkIDonDat == 0)
+            {
+                data.FkIDonDat = null;
+                
+            }
             if (_OrdersRepos.GetById(request.FkIDonDat) != null)
             {
                 //order = _OrdersRepos.GetById((int)request.FkIDonDat);
                 data.FkIDonDat = request.FkIDonDat;
             }
             
-            if (_DamageTypeRepos.GetById(request.FkILoaiHuHong) != null)
-            {
-                data.FkILoaiHuHong = request.FkILoaiHuHong;
-                //damagetype = _DamageTypeRepos.GetById((int)request.FkILoaiHuHong);
-            }
+          
           
 
             if (employee == null)
             {
-                throw new Exception("phải có nhân viên");
+                throw new Exception("không tìm thấy nhân viên với id:" +request.FkINhanvien);
             }
             if (customer == null)
             {
-                throw new Exception("phái có khách hàng");
+                throw new Exception("không tìm thấy khách hàng vơi id:" + request.FkIKhachhang);
             }
             if (vehicle == null)
             {
-                throw new Exception("phải có xe");
+                throw new Exception("không tìm thấy xe với id" + request.FkIXe);
             }
 
 

@@ -27,8 +27,8 @@ namespace WebAPI.Controllers
 
         }
         [HttpGet]
-        [Route("GetCustomerById/{id}")]
-        public ActionResult GetCustomerById(int id)
+        [Route("GetCustomerById")]
+        public ActionResult GetCustomerById([FromHeader]int id)
         {
             try
             {
@@ -43,8 +43,8 @@ namespace WebAPI.Controllers
 
         }
         [HttpGet]
-        [Route("GetCustomerByName{name}")]
-        public ActionResult GetCustomerByName(string name)
+        [Route("GetCustomerByName")]
+        public ActionResult GetCustomerByName([FromHeader]string name)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace WebAPI.Controllers
             return Ok(_service.Create(request));
         }
         [HttpPut]
-        [Route("UpdateCustomer/{id}")]
+        [Route("UpdateCustomer")]
         public ActionResult UpdateCustomer([FromHeader] int id, [FromBody] CustomerRequest request)
         {
             try
@@ -81,8 +81,8 @@ namespace WebAPI.Controllers
 
         }
         [HttpDelete]
-        [Route("DeleteCustomer/{id}")]
-        public ActionResult DeleteCustomer(int id)
+        [Route("DeleteCustomer")]
+        public ActionResult DeleteCustomer([FromHeader]int id)
         {
             try
             {

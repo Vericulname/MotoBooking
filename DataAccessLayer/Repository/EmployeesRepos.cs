@@ -15,21 +15,21 @@ namespace DataAccessLayer.Repository
         {
             using (var context = new MotoBookingContext())
             {
-                return context.TbNhanviens.ToList();
+                return context.TblNhanviens.ToList();
             }
         }
         public TblNhanvien GetById(int id)
         {
             using (var context = new MotoBookingContext())
             {
-                return context.TbNhanviens.Find(id);
+                return context.TblNhanviens.Find(id);
             }
         }
         public TblNhanvien Add(TblNhanvien nhanvien)
         {
             using (var context = new MotoBookingContext())
             {
-                context.TbNhanviens.Add(nhanvien);
+                context.TblNhanviens.Add(nhanvien);
                 context.SaveChanges();
                 return nhanvien;
             }
@@ -38,7 +38,7 @@ namespace DataAccessLayer.Repository
         {
             using (var context = new MotoBookingContext())
             {
-                context.TbNhanviens.Update(nhanvien);
+                context.TblNhanviens.Update(nhanvien);
                 context.SaveChanges();
                 return nhanvien;
             }
@@ -47,9 +47,9 @@ namespace DataAccessLayer.Repository
         {
             using (var context = new MotoBookingContext())
             {
-                var nhanvien = context.TbNhanviens.Find(id);
+                var nhanvien = context.TblNhanviens.Find(id);
                 
-                context.TbNhanviens.Remove(nhanvien);
+                context.TblNhanviens.Remove(nhanvien);
                 context.SaveChanges();
                 
             }
