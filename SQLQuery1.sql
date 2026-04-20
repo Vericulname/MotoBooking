@@ -78,5 +78,5 @@ create table tblHoaDon(
 
 drop table tblDonDatXe,tblHoaDon,tblHopDong,tblKhachhang,tblLoaiHuHong,tblNhanvien,tblXe
 
-select * from tblXe
+select * from tblNhanVien
 
