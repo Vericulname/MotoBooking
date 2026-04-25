@@ -1,6 +1,7 @@
 ﻿using BussinessLayer.Models;
 using BussinessLayer.request;
 using BussinessLayer.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -8,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(Policy = "NotCustomer")]
     [ApiController]
     public class ContractsController : ControllerBase
     {
@@ -17,6 +19,7 @@ namespace WebAPI.Controllers
         }
         [HttpGet]
         [Route("getall")]
+
         public IActionResult GetAllOrders()
         {
             List<ContractsModel> orders = _service.GetAll();
@@ -24,6 +27,7 @@ namespace WebAPI.Controllers
         }
         [HttpGet]
         [Route("Getbyid")]
+        [AllowAnonymous]
         public IActionResult GetOrderByid([FromHeader]int id) {
             try
             {
@@ -49,6 +53,7 @@ namespace WebAPI.Controllers
         }
         [HttpPut]
         [Route("Update")]
+        [Authorize(Policy = "NotCustomer")]
         public IActionResult Update([FromHeader]int id,[FromBody]ContractsRequest request) {
 
             try
@@ -62,6 +67,7 @@ namespace WebAPI.Controllers
             }
         }
         [HttpDelete]
+        [Authorize(Policy = "NotCustomer")]
         [Route("delete")]
         public IActionResult delete([FromHeader]int id) {
             try

@@ -18,6 +18,14 @@ namespace DataAccessLayer.Repository
                 return context.TblDonDatXes.ToList();
             }
         }
+        public List<TblDonDatXe> GetByCustomerId(int id)
+        {
+            using (var context = new MotoBookingContext())
+            {
+                return context.TblDonDatXes.Where(i => i.FkIKhachhang == id).ToList();
+            }
+        }
+
         public TblDonDatXe GetById(int? id)
         {
             using (var context = new MotoBookingContext())

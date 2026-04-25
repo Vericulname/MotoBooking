@@ -33,6 +33,12 @@ namespace BussinessLayer.Services
             List<OrdersModel> lst = _modelmapper.Map<List<TblDonDatXe>, List<OrdersModel>>(data);
             return lst;
         }
+        public List<OrdersModel> GetByCustomerId(int id)
+        {
+            List<TblDonDatXe> data = _OrdersRepos.GetByCustomerId(id);
+            List<OrdersModel> lst = _modelmapper.Map<List<TblDonDatXe>, List<OrdersModel>>(data);
+            return lst;
+        }
         public OrdersModel GetById(int id)
         {
             var data = _OrdersRepos.GetById(id);

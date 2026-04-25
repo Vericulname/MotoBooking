@@ -7,6 +7,8 @@ create table tblKhachhang(
 	sDiaChi nvarchar(200),
 	dNgayTao datetime default getdate()
 )
+alter table tblKhachHang add Fk_iTaiKhoan int foreign key references TblTaiKhoan(PK_iTaiKhoan)
+
 create table tblNhanvien(
 	PK_iNhanvien int identity(1,1) primary key ,
  	sHoTen	nvarchar(100)  not null,
@@ -15,6 +17,7 @@ create table tblNhanvien(
 	sVaiTro nvarchar(20) Default 'staff',
 	dNgayTao datetime default getdate()
 )
+alter table tblNhanvien add Fk_iTaiKhoan int foreign key references TblTaiKhoan(PK_iTaiKhoan)
 create table tblXe(
 	PK_iXe Int identity(1,1) primary key,
 	sBienSo varchar(20) unique not null,
@@ -75,8 +78,19 @@ create table tblHoaDon(
 	constraint FK_iLoaiHuHong_tblHoaDon foreign key(Fk_iLoaiHuHong) references tblLoaiHuHong(PK_iLoaiHuHong)
 )
 
+create table tblTaiKhoan(
+	PK_iTaiKhoan int identity(1,1) primary key,
+	sMatKhau nvarchar(255) not null,
+	sSoDienThoai varchar (15) not null,
+	sVaiTro nvarchar(50) not null,
+)
+
 
 drop table tblDonDatXe,tblHoaDon,tblHopDong,tblKhachhang,tblLoaiHuHong,tblNhanvien,tblXe
 
-select * from tblNhanVien
+select * from tblKhachHang
+
+select * from tblTaiKhoan
+select * from tblXe
+select * from tblDonDatXe
 

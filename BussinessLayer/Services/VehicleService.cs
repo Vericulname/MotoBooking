@@ -3,10 +3,12 @@ using BussinessLayer.Models;
 using BussinessLayer.request;
 using DataAccessLayer.Entities;
 using DataAccessLayer.Repository;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,6 +42,13 @@ namespace BussinessLayer.Services
             VehiclesModel model = _modelmapper.Map<TblXe, VehiclesModel>(data);
             return model;
         }
+        //public List<VehiclesModel> GetByName(string name)
+        //{
+        //    List<TblXe> data = _Repos.GetAll();
+        //    List<VehiclesModel> lst = _modelmapper.Map<List<TblXe>, List<VehiclesModel>>(data);
+        //    return lst;
+        //}
+
         public VehiclesModel Create(VehicleRequest request)
         {
             TblXe entity = _requestmapper.Map<VehicleRequest, TblXe>(request);

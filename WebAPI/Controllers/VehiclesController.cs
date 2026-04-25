@@ -1,6 +1,7 @@
 ﻿using BussinessLayer.Models;
 using BussinessLayer.request;
 using BussinessLayer.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("GetAllVehicle")]
+        
         public IActionResult GetAll()
         {
             List<VehiclesModel> vehicles = _service.GetAll();
@@ -35,8 +37,23 @@ namespace WebAPI.Controllers
                 return NotFound(ex.Message);
             }
         }
+        //[HttpGet]
+        //[Route("GetVehicleByName/{name}")]
+        //public IActionResult GetByName(string name)
+        //{
+        //    try
+        //    {
+        //        VehiclesModel vehicle = _service.GetById(id);
+        //        return Ok(vehicle);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return NotFound(ex.Message);
+        //    }
+        //}
         [HttpPost]
         [Route("AddVehicle")]
+        [Authorize(policy:"NotCustomer")]
         public IActionResult AddVehicle(VehicleRequest request)
         {
 
@@ -46,6 +63,7 @@ namespace WebAPI.Controllers
         }
         [HttpPut]
         [Route("UpdateStatus/{id}")]
+        [Authorize(policy: "NotCustomer")]
         public IActionResult UpdateStatus(int id, String status)
         {
             try
@@ -60,6 +78,7 @@ namespace WebAPI.Controllers
         }
         [HttpPut]
         [Route("UpdateVehicle/{id}")]
+        [Authorize(policy: "NotCustomer")]
         public IActionResult UpdateVehicle(int id, VehicleRequest request)
         {
             try
@@ -73,6 +92,7 @@ namespace WebAPI.Controllers
             }
         }
         [HttpDelete]
+        [Authorize(policy: "NotCustomer")]
         [Route("DeleteVehicle/{id}")]
         public IActionResult DeleteVehicle(int id)
         {

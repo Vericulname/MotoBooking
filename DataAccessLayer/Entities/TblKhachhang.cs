@@ -39,6 +39,13 @@ public partial class TblKhachhang
     [Column("dNgayTao", TypeName = "datetime")]
     public DateTime? DNgayTao { get; set; }
 
+    [Column("Fk_iTaiKhoan")]
+    public int? FkITaiKhoan { get; set; }
+
+    [ForeignKey("FkITaiKhoan")]
+    [InverseProperty("TblKhachhangs")]
+    public virtual TblTaiKhoan? FkITaiKhoanNavigation { get; set; }
+
     [InverseProperty("FkIKhachhangNavigation")]
     public virtual ICollection<TblDonDatXe> TblDonDatXes { get; set; } = new List<TblDonDatXe>();
 

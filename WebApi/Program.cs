@@ -1,6 +1,11 @@
-
+﻿
 using DataAccessLayer.Context;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +17,7 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<MotoBookingContext>(
     option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(option =>{
@@ -20,12 +26,34 @@ builder.Services.AddCors(option =>{
         policy.AllowAnyHeader();
         policy.AllowAnyMethod();
         policy.AllowAnyOrigin();
+        //policy.AllowCredentials();
     });
 });
 builder.Services.AddControllers().AddJsonOptions(option =>{
     option.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
 });
 
+
+builder.Services.AddAuthentication(option =>
+   {
+        option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+   }
+).AddJwtBearer(option =>
+{
+    option.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
+        ValidateIssuer = false, 
+        ValidateAudience = false, 
+        ClockSkew = TimeSpan.Zero 
+    };
+});
+builder.Services.AddAuthorization(option =>
+option.AddPolicy("NotCustomer",policy =>
+    policy.RequireRole("staff","manager"))
+);
 
 var app = builder.Build();
 

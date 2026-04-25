@@ -1,6 +1,7 @@
 ﻿using BussinessLayer.Models;
 using BussinessLayer.request;
 using BussinessLayer.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -8,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(Policy = "NotCustomer")]
     [ApiController]
     public class InvoicesController : ControllerBase
     {
@@ -17,12 +19,14 @@ namespace WebAPI.Controllers
         }
         [HttpGet]
         [Route("getall")]
+
         public IActionResult GetAllOrders()
         {
             List<InvoiceModel> orders = _service.GetAll();
             return Ok(orders);
         }
         [HttpGet]
+        [AllowAnonymous]
         [Route("Getbyid")]
         public IActionResult GetOrderByid([FromHeader]int id) {
             try

@@ -18,6 +18,13 @@ namespace DataAccessLayer.Repository
                 return context.TblXes.ToList();
             }
         }
+        //public List<TblXe> GetByName(string name)
+        //{
+        //    using (var context = new MotoBookingContext())
+        //    {
+        //        return context.TblXes.Where(i =>i.)
+        //    }
+        //}
         public TblXe GetById(int id)
         {
             using (var context = new MotoBookingContext())

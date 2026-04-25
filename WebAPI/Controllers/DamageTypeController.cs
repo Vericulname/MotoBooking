@@ -1,6 +1,7 @@
 ﻿using BussinessLayer.Models;
 using BussinessLayer.request;
 using BussinessLayer.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "NotCustomer")]
     public class DamageTypeController : ControllerBase
     {
         private readonly DamageTypesService _service;

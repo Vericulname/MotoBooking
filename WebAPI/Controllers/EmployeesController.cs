@@ -1,5 +1,6 @@
 ﻿using BussinessLayer.request;
 using BussinessLayer.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,8 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //để tạm test phân quyền, nhớ xoá
+    [Authorize(Roles ="manager")]
     public class EmployeesController : ControllerBase
     {
         private readonly EmployeesService _service;

@@ -1,6 +1,7 @@
 ﻿using BussinessLayer.Models;
 using BussinessLayer.request;
 using BussinessLayer.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -16,6 +17,7 @@ namespace WebAPI.Controllers
             _service = new OrderService();
         }
         [HttpGet]
+        [Authorize(Policy ="NotCustomer")]
         [Route("getall")]
         public IActionResult GetAllOrders()
         {
@@ -34,6 +36,20 @@ namespace WebAPI.Controllers
                 return NotFound(ex.Message);
             }
         }
+        [HttpGet]
+        [Route("GetbyCustomerid")]
+        public IActionResult GetOrderByCustomerid([FromHeader] int id)
+        {
+            try
+            {
+                List<OrdersModel> order = _service.GetByCustomerId(id);
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
         [HttpPost]
         [Route("create")]
         public IActionResult Create([FromBody]OrdersRequest request) {
@@ -48,6 +64,7 @@ namespace WebAPI.Controllers
             }
         }
         [HttpPut]
+        [Authorize(Policy = "NotCustomer")]
         [Route("Update")]
         public IActionResult Update([FromHeader]int id,[FromBody]OrdersRequest request) {
 
@@ -62,6 +79,7 @@ namespace WebAPI.Controllers
             }
         }
         [HttpDelete]
+
         [Route("delete")]
         public IActionResult delete([FromHeader]int id) {
             try

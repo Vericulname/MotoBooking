@@ -10,8 +10,8 @@ namespace BussinessLayer.request
     {
         public int FkIHopDong { get; set; }
         public int? FkILoaiHuHong { get; set; } = null;
-        public string SPhuongThucThanhToan { get; set; }
-        public string STrangThaiThanhToan { get; set; }
+        public string SPhuongThucThanhToan { get; set; } = null!;
+        public string STrangThaiThanhToan { get; set; } = null!;
         //public DateTime? DNgayLap { get; set; }
     }
 }
