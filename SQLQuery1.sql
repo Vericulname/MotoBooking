@@ -81,10 +81,12 @@ create table tblHoaDon(
 create table tblTaiKhoan(
 	PK_iTaiKhoan int identity(1,1) primary key,
 	sMatKhau nvarchar(255) not null,
-	sSoDienThoai varchar (15) not null,
+	sSoDienThoai varchar (15) not null unique,
 	sVaiTro nvarchar(50) not null,
 )
 
+insert into tblTaiKhoan(sMatKhau, sSoDienThoai,sVaiTro)
+values ('0123','12345','manager')
 
 drop table tblDonDatXe,tblHoaDon,tblHopDong,tblKhachhang,tblLoaiHuHong,tblNhanvien,tblXe
 

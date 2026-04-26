@@ -8,8 +8,8 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //để tạm test phân quyền, nhớ xoá
-    [Authorize(Roles ="manager")]
+
+    [Authorize(Roles = "manager")]
     public class EmployeesController : ControllerBase
     {
         private readonly EmployeesService _service;
@@ -19,6 +19,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
+
         [Route("GetAllEmployees")]
         public IActionResult GetAll()
         {
@@ -41,7 +42,7 @@ namespace WebAPI.Controllers
         }
         [HttpPost]
         [Route("CreateEmployee")]
-        public IActionResult Create(EmployeesRequest request)
+        public IActionResult Create(RegisterAccRequest request)
         {
             try
             {

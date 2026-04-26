@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 namespace DataAccessLayer.Entities;
 
 [Table("tblNhanvien")]
-[Index("SSoDienThoai", Name = "UQ__tblNhanv__B6E2FD9D1F835862", IsUnique = true)]
 public partial class TblNhanvien
 {
     [Key]
@@ -17,20 +16,6 @@ public partial class TblNhanvien
     [Column("sHoTen")]
     [StringLength(100)]
     public string SHoTen { get; set; } = null!;
-
-    [Column("sSoDienThoai")]
-    [StringLength(15)]
-    [Unicode(false)]
-    public string SSoDienThoai { get; set; } = null!;
-
-    [Column("sMatKhau")]
-    [StringLength(255)]
-    [Unicode(false)]
-    public string SMatKhau { get; set; } = null!;
-
-    [Column("sVaiTro")]
-    [StringLength(20)]
-    public string? SVaiTro { get; set; }
 
     [Column("dNgayTao", TypeName = "datetime")]
     public DateTime? DNgayTao { get; set; }

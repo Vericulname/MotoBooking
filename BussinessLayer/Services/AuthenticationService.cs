@@ -27,7 +27,7 @@ namespace BussinessLayer.Services
 
         public TblTaiKhoan login(LoginAccRequest request)
         {
-            var user = _Repos.GetByNameAndPass(request.Name,request.password);
+            var user = _Repos.GetByNameAndPass(request.SDT, request.password);
             if (user == null)
             {
                 throw new Exception("tên tài khoản hoặc mật khẩu ko đúng");
@@ -48,23 +48,21 @@ namespace BussinessLayer.Services
 
             _Repos.Add(user);
 
-            //if ( String.Equals("cusomter", user.SVaiTro!.ToLower()))
-            //{
-            //    TblKhachhang customer = new TblKhachhang();
-            //    customer.SHoTen = request.SHoTen;
-            //    customer.SSoDienThoai = request.SSoDienThoai;
-                
-            //    _customersRepos.Add(customer);
-            //}
-            //else {
-            //    TblNhanvien employee = new TblNhanvien();
-            //    employee.SHoTen = request.SHoTen;
-            //    employee.SSoDienThoai = request.SSoDienThoai;
-            //    employee.SMatKhau = request.SMatKhau;
-            //    employee.SVaiTro = request.SVaiTro;
+            if (String.Equals("cusomter", user.SVaiTro!.ToLower()))
+            {
+                TblKhachhang customer = new TblKhachhang();
+                customer.SHoTen = request.SHoTen;
 
-            //    _employeesRepos.Add(employee);
-            //}
+
+                _customersRepos.Add(customer);
+            }
+            else
+            {
+                TblNhanvien employee = new TblNhanvien();
+                employee.SHoTen = request.SHoTen;
+
+                _employeesRepos.Add(employee);
+            }
         }
         public void registerCustomer(RegisterCustomerRequest request)
         {
@@ -79,23 +77,14 @@ namespace BussinessLayer.Services
 
             _Repos.Add(user);
 
-            //if ( String.Equals("cusomter", user.SVaiTro!.ToLower()))
-            //{
-            //    TblKhachhang customer = new TblKhachhang();
-            //    customer.SHoTen = request.SHoTen;
-            //    customer.SSoDienThoai = request.SSoDienThoai;
+            
+            TblKhachhang customer = new TblKhachhang();
+            customer.SHoTen = request.SHoTen;
 
-            //    _customersRepos.Add(customer);
-            //}
-            //else {
-            //    TblNhanvien employee = new TblNhanvien();
-            //    employee.SHoTen = request.SHoTen;
-            //    employee.SSoDienThoai = request.SSoDienThoai;
-            //    employee.SMatKhau = request.SMatKhau;
-            //    employee.SVaiTro = request.SVaiTro;
 
-            //    _employeesRepos.Add(employee);
-            //}
+            _customersRepos.Add(customer);
+            
+
         }
 
         public void UpdateRole(int id, string role)

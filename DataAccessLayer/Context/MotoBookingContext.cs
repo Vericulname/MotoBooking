@@ -93,7 +93,7 @@ public partial class MotoBookingContext : DbContext
 
             entity.Property(e => e.DNgayTao).HasDefaultValueSql("(getdate())");
 
-            entity.HasOne(d => d.FkITaiKhoanNavigation).WithMany(p => p.TblKhachhangs).HasConstraintName("FK__tblKhachh__Fk_iT__3B95D2F1");
+            entity.HasOne(d => d.FkITaiKhoanNavigation).WithMany(p => p.TblKhachhangs).HasConstraintName("FK__tblKhachh__Fk_iT__4DB4832C");
         });
 
         modelBuilder.Entity<TblLoaiHuHong>(entity =>
@@ -106,14 +106,13 @@ public partial class MotoBookingContext : DbContext
             entity.HasKey(e => e.PkINhanvien).HasName("PK__tblNhanv__10619B37BCD1F8A1");
 
             entity.Property(e => e.DNgayTao).HasDefaultValueSql("(getdate())");
-            entity.Property(e => e.SVaiTro).HasDefaultValue("staff");
 
-            entity.HasOne(d => d.FkITaiKhoanNavigation).WithMany(p => p.TblNhanviens).HasConstraintName("FK__tblNhanvi__Fk_iT__3C89F72A");
+            entity.HasOne(d => d.FkITaiKhoanNavigation).WithMany(p => p.TblNhanviens).HasConstraintName("FK__tblNhanvi__Fk_iT__4EA8A765");
         });
 
         modelBuilder.Entity<TblTaiKhoan>(entity =>
         {
-            entity.HasKey(e => e.PkITaiKhoan).HasName("PK__tblTaiKh__952402C559CB857C");
+            entity.HasKey(e => e.PkITaiKhoan).HasName("PK__tblTaiKh__952402C589614693");
         });
 
         modelBuilder.Entity<TblXe>(entity =>

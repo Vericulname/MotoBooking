@@ -8,7 +8,7 @@ namespace BussinessLayer.request
 {
     public class LoginAccRequest
     {
-        public string Name { get; set; }
+        public string SDT { get; set; }
         public string password { get; set; }
     }
 }

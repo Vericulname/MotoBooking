@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 namespace DataAccessLayer.Entities;
 
 [Table("tblKhachhang")]
-[Index("SSoDienThoai", Name = "UQ__tblKhach__B6E2FD9DBAC4BC74", IsUnique = true)]
 public partial class TblKhachhang
 {
     [Key]
@@ -17,11 +16,6 @@ public partial class TblKhachhang
     [Column("sHoTen")]
     [StringLength(100)]
     public string SHoTen { get; set; } = null!;
-
-    [Column("sSoDienThoai")]
-    [StringLength(15)]
-    [Unicode(false)]
-    public string SSoDienThoai { get; set; } = null!;
 
     [Column("sCCCD")]
     [StringLength(12)]

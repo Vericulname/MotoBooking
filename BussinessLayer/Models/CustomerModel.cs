@@ -12,8 +12,6 @@ namespace BussinessLayer.Models
 
         public string SHoTen { get; set; } = null!;
 
-        public string SSoDienThoai { get; set; } = null!;
-
         public string? SCccd { get; set; }
 
         public string? SEmail { get; set; }

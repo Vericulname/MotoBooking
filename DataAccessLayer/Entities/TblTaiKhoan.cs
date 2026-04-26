@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace DataAccessLayer.Entities;
 
 [Table("tblTaiKhoan")]
+[Index("SSoDienThoai", Name = "UQ__tblTaiKh__B6E2FD9D678D5F9B", IsUnique = true)]
 public partial class TblTaiKhoan
 {
     [Key]
