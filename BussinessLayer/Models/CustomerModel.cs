@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessLayer.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace BussinessLayer.Models
         public int PkIKhachhang { get; set; }
 
         public string SHoTen { get; set; } = null!;
+        public virtual TblTaiKhoan? FkITaiKhoanNavigation { get; set; }
 
         public string? SCccd { get; set; }
 
