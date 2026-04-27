@@ -88,14 +88,4 @@ create table tblTaiKhoan(
 insert into tblTaiKhoan(sMatKhau, sSoDienThoai,sVaiTro)
 values ('0123','12345','manager')
 
-drop table tblDonDatXe,tblHoaDon,tblHopDong,tblKhachhang,tblLoaiHuHong,tblNhanvien,tblXe
 
-select * from tblKhachHang
-
-select * from tblTaiKhoan
-select * from tblNhanVien
-select * from tblXe
-select * from tblDonDatXe
-
-
-delete tblNhanVien where PK_iNhanvien = 1
