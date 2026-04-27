@@ -93,6 +93,9 @@ drop table tblDonDatXe,tblHoaDon,tblHopDong,tblKhachhang,tblLoaiHuHong,tblNhanvi
 select * from tblKhachHang
 
 select * from tblTaiKhoan
+select * from tblNhanVien
 select * from tblXe
 select * from tblDonDatXe
 
+
+delete tblNhanVien where PK_iNhanvien = 1

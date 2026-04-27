@@ -10,6 +10,7 @@ namespace BussinessLayer.Services
     public class CustomersService
     {
         private CustomersRepos _Repos;
+        private AccountsRepos _accountsRepos;
         private Mapper _modelmapper;
         private Mapper _requestmapper;
 
@@ -17,12 +18,24 @@ namespace BussinessLayer.Services
         public CustomersService()
         {
             _Repos = new CustomersRepos();
+            _accountsRepos= new AccountsRepos();
+
             _modelmapper = ModelMapper<TblKhachhang, CustomerModel>.createMap();
             _requestmapper = ModelMapper<TblKhachhang, CustomerRequest>.createMap();
         }
         public List<CustomerModel> GetAll()
         {
             List<TblKhachhang> data = _Repos.GetAll();
+            foreach (var item in data)
+            {
+                if (item.FkITaiKhoan !=null)
+                {
+                    
+                    item.FkITaiKhoanNavigation = _accountsRepos.GetById((int) item.FkITaiKhoan);
+                }
+
+                
+            }
             List<CustomerModel> lst = _modelmapper.Map<List<TblKhachhang>, List<CustomerModel>>(data);
             return lst;
         }
@@ -33,6 +46,8 @@ namespace BussinessLayer.Services
             {
                 throw new Exception("Không tìm thấy khách hàng với id: " + id);
             }
+            data.FkITaiKhoanNavigation = _accountsRepos.GetById((int)data.FkITaiKhoan);
+
             CustomerModel model = _modelmapper.Map<TblKhachhang, CustomerModel>(data);
             return model;
             
@@ -44,6 +59,7 @@ namespace BussinessLayer.Services
             {
                 throw new Exception("Không tìm thấy khách hàng với tên: " + name);
             }
+            data.FkITaiKhoanNavigation = _accountsRepos.GetById((int)data.FkITaiKhoan);
             CustomerModel model = _modelmapper.Map<TblKhachhang, CustomerModel>(data);
             return model;
 
@@ -64,6 +80,17 @@ namespace BussinessLayer.Services
 
             }
             _requestmapper.Map<CustomerRequest, TblKhachhang>(request, data);
+
+            if (data.FkITaiKhoan != null)
+            {
+                TblTaiKhoan account = _accountsRepos.GetById((int)data.FkITaiKhoan);
+
+                account.SMatKhau = request.SMatKhau;
+                account.SSoDienThoai = request.SSoDienThoai;
+
+                _accountsRepos.Update(account);
+            }
+
             return _modelmapper.Map<TblKhachhang, CustomerModel>(_Repos.Update(data));
         }
         public void Delete(int id)
@@ -74,6 +101,7 @@ namespace BussinessLayer.Services
                 throw new Exception("Không tìm thấy khách hàng với id: " + id);
             }
             _Repos.Delete(id);
+           _accountsRepos.Delete((int)data.FkITaiKhoan);
         }
     }
 }

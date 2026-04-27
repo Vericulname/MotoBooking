@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Entities;
@@ -28,8 +29,10 @@ public partial class TblTaiKhoan
     public string SVaiTro { get; set; } = null!;
 
     [InverseProperty("FkITaiKhoanNavigation")]
+    [JsonIgnore]
     public virtual ICollection<TblKhachhang> TblKhachhangs { get; set; } = new List<TblKhachhang>();
 
     [InverseProperty("FkITaiKhoanNavigation")]
+    [JsonIgnore]
     public virtual ICollection<TblNhanvien> TblNhanviens { get; set; } = new List<TblNhanvien>();
 }

@@ -27,7 +27,7 @@ namespace BussinessLayer.Services
 
         public TblTaiKhoan login(LoginAccRequest request)
         {
-            var user = _Repos.GetByNameAndPass(request.SDT, request.password);
+            var user = _Repos.GetByPhoneNumberAndPass(request.SDT, request.password);
             if (user == null)
             {
                 throw new Exception("tên tài khoản hoặc mật khẩu ko đúng");
@@ -37,7 +37,7 @@ namespace BussinessLayer.Services
         }
         public void register(RegisterAccRequest request)
         {
-            var user = _Repos.GetByName(request.SSoDienThoai);
+            var user = _Repos.GetByPhoneNumber(request.SSoDienThoai);
             if (user != null)
             {
                 throw new Exception("số điện thoại đã tồn tại");
@@ -66,7 +66,7 @@ namespace BussinessLayer.Services
         }
         public void registerCustomer(RegisterCustomerRequest request)
         {
-            var user = _Repos.GetByName(request.SSoDienThoai);
+            var user = _Repos.GetByPhoneNumber(request.SSoDienThoai);
             if (user != null)
             {
                 throw new Exception("số điện thoại đã tồn tại");

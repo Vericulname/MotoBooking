@@ -17,6 +17,7 @@ namespace BussinessLayer.Models
             ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
             {
                 builder.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
+                
             });
             MapperConfiguration config = new(static cfg => cfg.CreateMap<Tsource, Tdestination>().ReverseMap(), loggerFactory);
             Mapper mapper = new Mapper(config);

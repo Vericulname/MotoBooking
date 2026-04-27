@@ -14,7 +14,7 @@ namespace BussinessLayer.Services
 
         private Mapper _modelmapper;
         private Mapper _requestmapper;
-
+ 
 
         public EmployeesService()
         {
@@ -27,6 +27,11 @@ namespace BussinessLayer.Services
         public List<EmployeesModel> GetAll()
         {
             List<TblNhanvien> data = _Repos.GetAll();
+            foreach (var item in data)
+            {
+                item.FkITaiKhoanNavigation = _AccountsRepos.GetById((int) item.FkITaiKhoan);
+            }
+
             List<EmployeesModel> lst = _modelmapper.Map<List<TblNhanvien>, List<EmployeesModel>>(data);
             return lst;
         }
@@ -37,6 +42,9 @@ namespace BussinessLayer.Services
             {
                 throw new Exception("Không tìm thấy nhân viên với id: " + id);
             }
+            TblTaiKhoan account = _AccountsRepos.GetById((int)data.FkITaiKhoan!);
+
+            data.FkITaiKhoanNavigation = account;
             EmployeesModel model = _modelmapper.Map<TblNhanvien, EmployeesModel>(data);
             return model;
             
@@ -55,12 +63,10 @@ namespace BussinessLayer.Services
 
             _AccountsRepos.Add(account);
 
-            var FKTaikhoan = _AccountsRepos.GetByName(request.SSoDienThoai);
+            var FKTaikhoan = _AccountsRepos.GetByPhoneNumber(request.SSoDienThoai);
 
             data.FkITaiKhoan = FKTaikhoan.PkITaiKhoan;
          
-
-
 
             return _modelmapper.Map<TblNhanvien, EmployeesModel>(_Repos.Add(data));
         }
@@ -74,6 +80,13 @@ namespace BussinessLayer.Services
 
             }
             _requestmapper.Map<EmployeesRequest, TblNhanvien>(request, data);
+            TblTaiKhoan account = _AccountsRepos.GetById((int) data.FkITaiKhoan);
+
+            account.SMatKhau = request.SMatKhau;
+            account.SSoDienThoai = request.SSoDienThoai;
+            account.SVaiTro = request.SVaiTro;
+            _AccountsRepos.Update(account);
+
             return _modelmapper.Map<TblNhanvien, EmployeesModel>(_Repos.Update(data));
         }
 
@@ -98,9 +111,10 @@ namespace BussinessLayer.Services
             var data = _Repos.GetById(id);
             if (data == null)
             {
-                throw new Exception("Không tìm thấy khách hàng với id: " + id);
+                throw new Exception("Không tìm thấy nhân viên với id: " + id);
             }
             _Repos.Delete(id);
+            _AccountsRepos.Delete((int) data.FkITaiKhoan!);
         }
     }
 

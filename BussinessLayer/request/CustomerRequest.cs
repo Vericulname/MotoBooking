@@ -14,6 +14,7 @@ namespace BussinessLayer.request
 
         public string SSoDienThoai { get; set; } = null!;
 
+        public string SMatKhau { get; set; } = null!;
         public string? SCccd { get; set; }
 
         public string? SEmail { get; set; }

@@ -22,19 +22,19 @@ namespace DataAccessLayer.Repository
                 return context.TblTaiKhoans.Find(id);
             }
         }
-        public TblTaiKhoan GetByName(string name)
+        public TblTaiKhoan GetByPhoneNumber(string phonenumber)
         {
             using (var context = new MotoBookingContext())
             {
-                return context.TblTaiKhoans.FirstOrDefault(k => k.SSoDienThoai == name);
+                return context.TblTaiKhoans.FirstOrDefault(k => k.SSoDienThoai == phonenumber);
             }
         }
-        public TblTaiKhoan GetByNameAndPass(string name, string pass)
+        public TblTaiKhoan GetByPhoneNumberAndPass(string phonenumber, string pass)
         {
             using (var context = new MotoBookingContext())
             {
                 TblTaiKhoan data = context.TblTaiKhoans.
-                    FirstOrDefault(k => k.SSoDienThoai == name && k.SMatKhau == pass);
+                    FirstOrDefault(k => k.SSoDienThoai == phonenumber && k.SMatKhau == pass);
 
                 return data;
             }
