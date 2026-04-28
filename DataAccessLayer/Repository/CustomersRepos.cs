@@ -32,6 +32,13 @@ namespace DataAccessLayer.Repository
                 return context.TblKhachhangs.FirstOrDefault(k => k.SHoTen == name);
             }
         }
+        public TblKhachhang GetByFkAccount(int id)
+        {
+            using (var context = new MotoBookingContext())
+            {
+                return context.TblKhachhangs.FirstOrDefault(k => k.FkITaiKhoan == id);
+            }
+        }
         public TblKhachhang Add(TblKhachhang khachhang)
         {
             using (var context = new MotoBookingContext())

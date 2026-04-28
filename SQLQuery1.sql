@@ -1,3 +1,4 @@
+create database MotoBooking
 create table tblKhachhang(
 	PK_iKhachhang int identity(1,1) primary key ,
  	sHoTen	nvarchar(100)  not null,
@@ -87,5 +88,3 @@ create table tblTaiKhoan(
 
 insert into tblTaiKhoan(sMatKhau, sSoDienThoai,sVaiTro)
 values ('0123','12345','manager')
-
-

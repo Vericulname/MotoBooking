@@ -48,11 +48,12 @@ namespace BussinessLayer.Services
 
             _Repos.Add(user);
 
-            if (String.Equals("cusomter", user.SVaiTro!.ToLower()))
+            if (String.Equals("customer", user.SVaiTro!.ToLower()))
             {
                 TblKhachhang customer = new TblKhachhang();
                 customer.SHoTen = request.SHoTen;
-
+                var FKAccount = _Repos.GetByPhoneNumber(user.SSoDienThoai).PkITaiKhoan;
+                customer.FkITaiKhoan = FKAccount;
 
                 _customersRepos.Add(customer);
             }
@@ -60,7 +61,8 @@ namespace BussinessLayer.Services
             {
                 TblNhanvien employee = new TblNhanvien();
                 employee.SHoTen = request.SHoTen;
-
+                var FKAccount = _Repos.GetByPhoneNumber(user.SSoDienThoai).PkITaiKhoan;
+                employee.FkITaiKhoan = FKAccount;
                 _employeesRepos.Add(employee);
             }
         }
@@ -81,6 +83,8 @@ namespace BussinessLayer.Services
             TblKhachhang customer = new TblKhachhang();
             customer.SHoTen = request.SHoTen;
 
+            var FKAccount = _Repos.GetByPhoneNumber(user.SSoDienThoai).PkITaiKhoan;
+            customer.FkITaiKhoan = FKAccount;
 
             _customersRepos.Add(customer);
             
@@ -107,6 +111,16 @@ namespace BussinessLayer.Services
             }
             
             _Repos.Delete(id);
+            if (_customersRepos.GetByFkAccount( user.PkITaiKhoan) != null)
+            {
+                int customer_id = (int) _customersRepos.GetByFkAccount(user.PkITaiKhoan).FkITaiKhoan;
+                _customersRepos.Delete(customer_id);   
+            }
+            if (_employeesRepos.GetByFkAccount(user.PkITaiKhoan) != null)
+            {
+                int employee_id = (int)_employeesRepos.GetByFkAccount(user.PkITaiKhoan);
+                _employeesRepos.Delete(employee_id);
+            }
 
         }
     }

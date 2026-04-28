@@ -85,7 +85,7 @@ namespace BussinessLayer.Services
             {
                 TblTaiKhoan account = _accountsRepos.GetById((int)data.FkITaiKhoan);
 
-                account.SMatKhau = request.SMatKhau;
+                //account.SMatKhau = request.SMatKhau;
                 account.SSoDienThoai = request.SSoDienThoai;
 
                 _accountsRepos.Update(account);
@@ -101,7 +101,11 @@ namespace BussinessLayer.Services
                 throw new Exception("Không tìm thấy khách hàng với id: " + id);
             }
             _Repos.Delete(id);
-           _accountsRepos.Delete((int)data.FkITaiKhoan);
+            if (data.FkITaiKhoan !=null )
+            {
+                
+            _accountsRepos.Delete((int)data.FkITaiKhoan);
+            }
         }
     }
 }

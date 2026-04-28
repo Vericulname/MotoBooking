@@ -54,5 +54,13 @@ namespace DataAccessLayer.Repository
                 
             }
         }
+
+        public TblNhanvien GetByFkAccount(int id)
+        {
+            using (var context = new MotoBookingContext())
+            {
+                return context.TblNhanviens.FirstOrDefault(k => k.FkITaiKhoan == id);
+            }
+        }
     }
 }
